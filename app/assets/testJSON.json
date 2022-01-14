@@ -1,0 +1,167 @@
+{
+    "user":[
+        {
+            "user_email": "aaa@gmail.com",
+            "user_nickname": "aaa"
+        },
+        {
+            "user_email": "bbb@gmail.com",
+            "user_nickname": "bbb"
+        },
+        {
+            "user_email": "ccc@gmail.com",
+            "user_nickname": "ccc"
+        },
+        {
+            "user_email": "ddd@gmail.com",
+            "user_nickname": "ddd"
+        },
+        {
+            "user_email": "eee@gmail.com",
+            "user_nickname": "eee"
+        },
+        {
+            "user_email": "fff@gmail.com",
+            "user_nickname": "fff"
+        },
+        {
+            "user_email": "ggg@gmail.com",
+            "user_nickname": "ggg"
+        },
+        {
+            "user_email": "hhh@gmail.com",
+            "user_nickname": "hhh"
+        },
+        {
+            "user_email": "iii@gmail.com",
+            "user_nickname": "iii"
+        },
+        {
+            "user_email": "jjj@gmail.com",
+            "user_nickname": "jjj"
+        }
+    ],
+    "message":[
+        {
+            "msg_id": 0,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "ccc@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "ccc",
+            "msg_contents": "안녕 aaa야 몰입캠프 재밌었어"
+        },
+        {
+            "msg_id": 1,
+            "msg_to_id": "ccc@gmail.com",
+            "msg_from_id": "aaa@gmail.com",
+            "msg_to_nick": "ccc",
+            "msg_from_nick": "aaa",
+            "msg_contents": "ccccccccccc to aaaaaaaaaaaa"
+        },
+        {
+            "msg_id": 2,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "fff@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "fff",
+            "msg_contents": "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세"
+        },
+        {
+            "msg_id": 3,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "bbb@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "bbb",
+            "msg_contents": "aaa야 나는 bbb야"
+        },
+        {
+            "msg_id": 4,
+            "msg_to_id": "eee@gmail.com",
+            "msg_from_id": "aaa@gmail.com",
+            "msg_to_nick": "eee",
+            "msg_from_nick": "aaa",
+            "msg_contents": "eeeaaa"
+        },
+        {
+            "msg_id": 5,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "hhh@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "hhh",
+            "msg_contents": "I've paid my dues Time after time I've done my sentence But committed no crime And bad mistakes I've made a few I've had my share of sand Kicked in my face But I've come through And we mean to go on and on and on and on We are the champions, my friends And we'll keep on fighting till the end We are the champions We are the champions No time for losers"
+        },
+        {
+            "msg_id": 6,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "hhh@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "hhh",
+            "msg_contents": "내가 보낸 노래는 Queen 의 We are the Champions 야."
+        },
+        {
+            "msg_id": 7,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "ccc@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "ccc",
+            "msg_contents": "ccc가 보냄"
+        },
+        {
+            "msg_id": 8,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "ddd@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "ddd",
+            "msg_contents": "Hello AAA!"
+        },
+        {
+            "msg_id": 9,
+            "msg_to_id": "hhh@gmail.com",
+            "msg_from_id": "iii@gmail.com",
+            "msg_to_nick": "hhh",
+            "msg_from_nick": "iii",
+            "msg_contents": "hhh & iii"
+        },
+        {
+            "msg_id": 10,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "eee@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "eee",
+            "msg_contents": "aeaeae"
+        },
+        {
+            "msg_id": 11,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "jjj@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "jjj",
+            "msg_contents": "jjj임"
+        },
+        {
+            "msg_id": 12,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "bbb@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "bbb",
+            "msg_contents": "bbbbbbbbb"
+        },
+        {
+            "msg_id": 13,
+            "msg_to_id": "ddd@gmail.com",
+            "msg_from_id": "fff@gmail.com",
+            "msg_to_nick": "ddd",
+            "msg_from_nick": "fff",
+            "msg_contents": "dddfff"
+        },
+        {
+            "msg_id": 14,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "iii@gmail.com",
+            "msg_to_nick": "aaa",
+            "msg_from_nick": "iii",
+            "msg_contents": "iii to aaa"
+        }
+
+    ]
+}
