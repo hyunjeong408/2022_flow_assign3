@@ -16,9 +16,10 @@ function ChatFromScreen({route}){
             <View style={styles.letterView}>
                 <ImageBackground style={styles.letterBack} resizeMode='contain' source={require('../assets/letter.png')}>
                     <View style={styles.letterBox}>
-                        <Text>{msg.msg_contents}</Text>
+                        <Text style={styles.title}>{msg.msg_to_nick} 에게</Text>
+                        <Text style={styles.contents}>{msg.msg_contents}</Text>
+                        <Text style={styles.endTitle}>{msg.msg_from_nick} 씀</Text>
                     </View>
-                    {/* <Text>{msg.msg_contents}</Text> */}
                 </ImageBackground>
             </View>
             <View style={styles.iconView}>
@@ -64,6 +65,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent:'center',
     },
+    title: {
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
+    contents: {
+        height: '80%',
+        fontSize: 15,
+    },
+    endTitle: {
+        fontSize: 17,
+        fontWeight: 'bold',
+    }
 })
 
 export default ChatFromScreen;
