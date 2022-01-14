@@ -1,13 +1,12 @@
 import React from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, ImageBackground, Platform, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, ImageBackground, Platform, Image, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
 
 function ChatFromScreen({route, navigation}){
     const {status, msg} = route.params;
-    // msg_id, msg_to_id, msg_from_id, msg_to_nick, msg_from_nick, msg_contents
     return(
         <ImageBackground
         resizeMode='stretch'
@@ -17,9 +16,9 @@ function ChatFromScreen({route, navigation}){
             <View style={styles.backIconView}>
                 <Icon name={'keyboard-backspace'} size={30} onPress={()=>{navigation.goBack()}}/>
             </View>
+
             <View style={styles.letterView}>
                 <ImageBackground style={styles.letterBack} resizeMode='contain' source={require('../assets/letter.png')}>
-                    
                     <View style={styles.letterBox}>
                         <Text style={styles.title}>{msg.msg_to_nick} 에게</Text>
                         <ScrollView style={styles.contents}>
@@ -29,6 +28,7 @@ function ChatFromScreen({route, navigation}){
                     </View>
                 </ImageBackground>
             </View>
+
             <View style={styles.iconView}>
                 <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/medal.png')}/>
             </View>
@@ -37,8 +37,6 @@ function ChatFromScreen({route, navigation}){
 }
 
 const styles = StyleSheet.create({
-    // container: {
-    // },
     background: {
         flex: 1,
         justifyContent: 'space-between',
@@ -78,7 +76,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        // fontWeight: 'bold',
         fontFamily: 'ejr',
     },
     contents: {
@@ -93,7 +90,6 @@ const styles = StyleSheet.create({
     endTitle: {
         fontSize: 19,
         fontFamily: 'ejr',
-        // fontWeight: 'bold',
     }
 })
 

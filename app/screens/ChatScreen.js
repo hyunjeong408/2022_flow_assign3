@@ -21,7 +21,7 @@ const listTab = [
 
 const Item = ({ msg_from_nick, msg_contents }) => (
     <View style={styles.item}>
-        <Text style={styles.title}>{msg_from_nick}</Text>
+        <Text numberOfLines={1} style={styles.title}>{msg_from_nick}</Text>
         <Text numberOfLines={2} style={styles.contents}>{msg_contents}</Text>
     </View>
 );
@@ -61,48 +61,44 @@ const ChatScreen = (props) => {
     }
 
     return(
-        // <SafeAreaView style={styles.container}>
-            <ImageBackground
-            resizeMode='stretch'
-            style={styles.background}
-            source={require("../assets/main_background.png")}
-            >
-                <View style={styles.backIconView}>
-                    <Icon name={'keyboard-backspace'} size={30} onPress={()=>{props.navigation.goBack()}}/>
-                </View>
-                <View style={styles.backView}>
-                    <View style={styles.listSpace}>
-                        <View style={styles.listTab}>
-                            {
-                                listTab.map(e => (
-                                    <TouchableOpacity
-                                    style={[styles.btnTab, status === e.status && styles.btnTabActive]}
-                                    onPress={()=> setStatusFilter(e.status)}
-                                    >
-                                        <Text style={[styles.textTab, status === e.status && styles.textTabActive]}>{e.status}</Text>
-                                    </TouchableOpacity>
-                                ))
-                            }
-                        </View>
-                        <FlatList
-                        data = {msgDataFiltered}
-                        style = {styles.listStyle}
-                        renderItem={renderItem}
-                        keyExtractor={(e, item)=>item.msg_id}
-                        />
+        <ImageBackground
+        resizeMode='stretch'
+        style={styles.background}
+        source={require("../assets/main_background.png")}
+        >
+            <View style={styles.backIconView}>
+                <Icon name={'keyboard-backspace'} size={30} onPress={()=>{props.navigation.goBack()}}/>
+            </View>
+
+            <View style={styles.backView}>
+                <View style={styles.listSpace}>
+                    <View style={styles.listTab}>
+                        {
+                            listTab.map(e => (
+                                <TouchableOpacity
+                                style={[styles.btnTab, status === e.status && styles.btnTabActive]}
+                                onPress={()=> setStatusFilter(e.status)}
+                                >
+                                    <Text style={[styles.textTab, status === e.status && styles.textTabActive]}>{e.status}</Text>
+                                </TouchableOpacity>
+                            ))
+                        }
                     </View>
+
+                    <FlatList
+                    data = {msgDataFiltered}
+                    style = {styles.listStyle}
+                    renderItem={renderItem}
+                    keyExtractor={(e, item)=>item.msg_id}
+                    />
                 </View>
-            </ImageBackground>
-        // </SafeAreaView>
+            </View>
+        </ImageBackground>
     );
 }
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: StatusBarHeight,
-    },
     background: {
         flex: 1,
     },
@@ -144,7 +140,6 @@ const styles = StyleSheet.create({
     textTab: {
         fontSize: 17,
         fontFamily: 'ejr',
-        // fontWeight: 'bold',
         color: color.tigerorange,
     },
     textTabActive: {
@@ -158,12 +153,11 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        // fontWeight: 'bold',
         fontFamily: 'ejr',
     },
     contents: {
         fontSize: 15,
-        fontFamily: 'gowun',
+        fontFamily: 'gowunBold',
     }
 })
 
