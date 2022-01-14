@@ -30,12 +30,9 @@ import { registerRootComponent, useFonts } from 'expo-font';
 // }
 function App() {
   const [loaded] = useFonts({
-    // Montserrat: require('./assets/fonts/Montserrat.ttf'),
-    jsm: require('./app/fonts/jsm.ttf'),
     ejr: require('./app/fonts/euljiro.ttf'),
     gowun: require('./app/fonts/gowun.ttf'),
     gowunBold: require('./app/fonts/gowunbold.ttf'),
-    pretendard: require('./app/fonts/pretendard.ttf'),
   });
   
   if (!loaded) {
