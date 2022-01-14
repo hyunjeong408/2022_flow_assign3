@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import color from '../config/color';
 
 
+
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator(){
