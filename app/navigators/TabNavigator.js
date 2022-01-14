@@ -17,17 +17,19 @@ export default function TabNavigator(){
             tabBarIcon: ({focused}) =>{
                 let iconName;
                 if(route.name === "Home") {
-                    iconName = focused ? 'home' : 'home-outline';
+                    iconName = 'home';
                 }
                 else {
-                    iconName = focused ? 'message' : 'message-outline';
+                    iconName = 'message';
                 }
-                return <Icon name={iconName} color={color.tigerorange}/>;
+                let iconColor = focused ? 'white' : color.tigerorange;
+                return <Icon name={iconName} color={iconColor} size={30}/>;
             }
         })}
         tabBarOptions={{
-            activeTintColor: color.tigerorange,
-            inactiveTintColor: 'black',
+            activeBackgroundColor: color.tigerorange,
+            inactiveBackgroundColor: 'white',
+            showLabel: false,
           }}
         >
             <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
