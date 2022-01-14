@@ -1,6 +1,8 @@
 import React, { Component, useState } from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { StyleSheet, View, Text, SafeAreaView, FlatList, StatusBar, Platform, TouchableOpacity, Dimensions, TouchableWithoutFeedback, ImageBackground } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import testData from '../assets/testJSON.json';
 import color from '../config/color';
 
@@ -44,7 +46,6 @@ const ChatScreen = (props) => {
     );
     
     const moveToDetailPage = (item) => {
-        // console.log(item.msg_contents);
         if(status === 'FROM'){
             props.navigation.navigate('CHAT_FROM', {
                 status: status,
@@ -66,25 +67,30 @@ const ChatScreen = (props) => {
             style={styles.background}
             source={require("../assets/main_background.png")}
             >
-                <View style={styles.listSpace}>
-                    <View style={styles.listTab}>
-                        {
-                            listTab.map(e => (
-                                <TouchableOpacity
-                                style={[styles.btnTab, status === e.status && styles.btnTabActive]}
-                                onPress={()=> setStatusFilter(e.status)}
-                                >
-                                    <Text style={[styles.textTab, status === e.status && styles.textTabActive]}>{e.status}</Text>
-                                </TouchableOpacity>
-                            ))
-                        }
+                <View style={styles.backIconView}>
+                    <Icon name={'keyboard-backspace'} size={30} onPress={()=>{props.navigation.goBack()}}/>
+                </View>
+                <View style={styles.backView}>
+                    <View style={styles.listSpace}>
+                        <View style={styles.listTab}>
+                            {
+                                listTab.map(e => (
+                                    <TouchableOpacity
+                                    style={[styles.btnTab, status === e.status && styles.btnTabActive]}
+                                    onPress={()=> setStatusFilter(e.status)}
+                                    >
+                                        <Text style={[styles.textTab, status === e.status && styles.textTabActive]}>{e.status}</Text>
+                                    </TouchableOpacity>
+                                ))
+                            }
+                        </View>
+                        <FlatList
+                        data = {msgDataFiltered}
+                        style = {styles.listStyle}
+                        renderItem={renderItem}
+                        keyExtractor={(e, item)=>item.msg_id}
+                        />
                     </View>
-                    <FlatList
-                    // style={styles.list}
-                    data = {msgDataFiltered}
-                    renderItem={renderItem}
-                    keyExtractor={(e, item)=>item.msg_id}
-                    />
                 </View>
             </ImageBackground>
         // </SafeAreaView>
@@ -95,23 +101,30 @@ const ChatScreen = (props) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // flexDirection: 'row',
-        // justifyContent: 'flex-end',
         paddingTop: StatusBarHeight,
     },
     background: {
         flex: 1,
-        // width: '100%',
-        // height: '100%',
+    },
+    backView: {
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        // marginBottom: '5%',
+    },
+    backIconView: {
+        marginTop: StatusBarHeight,
+        height: '5%',
+        paddingLeft: 15,
     },
     listSpace: {
-        // width: '100%',
-        height: '75%',
+        height: '80%',
         padding: 7,
         marginBottom: 10,
+    },
+    listStyle: {
+        margin: 7,
+        borderRadius: 10,
+        backgroundColor: 'white',
     },
     listTab: {
         flexDirection: 'row',
@@ -130,17 +143,14 @@ const styles = StyleSheet.create({
     },
     textTab: {
         fontSize: 17,
-        fontWeight: 'bold',
+        fontFamily: 'ejr',
+        // fontWeight: 'bold',
         color: color.tigerorange,
     },
     textTabActive: {
         color: '#fff',
     },
-    list: {
-        width: Dimensions.get('window').width,
-    },
     item: {
-        // backgroundColor: 'yellow',
         padding: 15,
         marginLeft: 10,
         marginRight: 10,
@@ -148,10 +158,12 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
+        fontFamily: 'ejr',
     },
     contents: {
         fontSize: 15,
+        fontFamily: 'gowun',
     }
 })
 
