@@ -1,9 +1,9 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './app/navigators/TabNavigator';
+import { registerRootComponent } from 'expo';
 
 
 
@@ -24,4 +24,4 @@ function App() {
 //   },
 // });
 
-export default App;
+export default App
