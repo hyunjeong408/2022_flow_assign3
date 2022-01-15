@@ -1,27 +1,34 @@
 import React from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { StyleSheet, View, Text, SafeAreaView, StatusBar, ImageBackground, Platform, Image } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, ImageBackground, Platform, Image, ScrollView } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
 
-function ChatFromScreen({route}){
+function ChatFromScreen({route, navigation}){
     const {status, msg} = route.params;
-    // const {msg_id, msg_to_id, msg_from_id, msg_to_nick, msg_from_nick, msg_contents } = msg.params;
     return(
         <ImageBackground
         resizeMode='stretch'
         style={styles.background}
         source={require("../assets/main_background.png")}
         >
+            <View style={styles.backIconView}>
+                <Icon name={'keyboard-backspace'} size={30} onPress={()=>{navigation.goBack()}}/>
+            </View>
+
             <View style={styles.letterView}>
                 <ImageBackground style={styles.letterBack} resizeMode='contain' source={require('../assets/letter.png')}>
                     <View style={styles.letterBox}>
                         <Text style={styles.title}>{msg.msg_to_nick} 에게</Text>
-                        <Text style={styles.contents}>{msg.msg_contents}</Text>
+                        <ScrollView style={styles.contents}>
+                            <Text style={styles.contentsText}>{msg.msg_contents}</Text>
+                        </ScrollView>
                         <Text style={styles.endTitle}>{msg.msg_from_nick} 씀</Text>
                     </View>
                 </ImageBackground>
             </View>
+            
             <View style={styles.iconView}>
                 <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/paperpen.png')}/>
             </View>
@@ -30,16 +37,18 @@ function ChatFromScreen({route}){
 }
 
 const styles = StyleSheet.create({
-    // container: {
-    // },
     background: {
         flex: 1,
         justifyContent: 'space-between',
     },
+    backIconView: {
+        marginTop: StatusBarHeight+10,
+        height: '5%',
+        paddingLeft: 10,
+    },
     letterView: {
-        paddingTop: StatusBarHeight+50,
         width: '100%',
-        height: '75%',
+        height: '70%',
     },
     letterBack: {
         width: '100%',
@@ -55,7 +64,7 @@ const styles = StyleSheet.create({
     },
     iconView: {
         width: '100%',
-        height: '25%',
+        height: '20%',
         flexDirection: 'row',
         justifyContent: 'flex-end',
     },
@@ -67,15 +76,21 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 20,
-        fontWeight: 'bold',
+        fontFamily: 'ejr',
     },
     contents: {
         height: '80%',
-        fontSize: 15,
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    contentsText: {
+        fontSize: 17,
+        fontFamily: 'gowun',
     },
     endTitle: {
         fontSize: 17,
         fontWeight: 'bold',
+        fontFamily: 'ejr',
     }
 })
 

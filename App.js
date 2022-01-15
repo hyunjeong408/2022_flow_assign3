@@ -1,13 +1,19 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './app/navigators/TabNavigator';
-import { registerRootComponent } from 'expo';
-
-
+import { useFonts } from 'expo-font';
 
 function App() {
+  const [loaded] = useFonts({
+    ejr: require('./app/fonts/euljiro.ttf'),
+    gowun: require('./app/fonts/gowun.ttf'),
+    gowunBold: require('./app/fonts/gowunbold.ttf'),
+  });
+  
+  if (!loaded) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
       <TabNavigator/>
@@ -15,13 +21,4 @@ function App() {
   );
 }
 
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-// });
-
-export default App
+export default App;
