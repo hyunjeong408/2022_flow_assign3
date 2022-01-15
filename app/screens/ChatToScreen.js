@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     },
     endTitle: {
         fontSize: 17,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         fontFamily: 'ejr',
     }
 })
