@@ -1,6 +1,6 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { StyleSheet, View, Text, SafeAreaView, FlatList, StatusBar, Platform, TouchableOpacity, Dimensions, TouchableWithoutFeedback, ImageBackground } from 'react-native';
+import { StyleSheet, View, Text, FlatList, StatusBar, Platform, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import testData from '../assets/testJSON.json';
