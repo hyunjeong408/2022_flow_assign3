@@ -1,13 +1,33 @@
-import React, { Component } from 'react';
+import React, {useEffect} from 'react';
+import { BackHandler, Alert } from 'react-native';
 import { Image, ImageBackground, StyleSheet, StatusBar, Platform, View, Text, TouchableOpacity } from 'react-native';
 import * as Google from 'expo-google-app-auth';
 
-import color from '../config/color';
 import signInLogo from '../assets/btn_google_signin.png';
 
 const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
 
 function LoginScreen(props) {
+    useEffect(() => {
+        const backAction = () => {
+          Alert.alert("", "앱을 종료하시겠습니까?", [
+            {
+              text: "취소",
+              onPress: () => null,
+              style: "cancel"
+            },
+            { text: "확인", onPress: () => BackHandler.exitApp() }
+          ]);
+          return true;
+        };
+    
+        const backHandler = BackHandler.addEventListener(
+          "hardwareBackPress",
+          backAction
+        );
+    
+        return () => backHandler.remove();
+      }, []);
     async function sinInWithGoogleAsync() {
         try {
             const { type, accessToken, user } = await Google.logInAsync({

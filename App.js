@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-// import TabNavigator from './app/navigators/TabNavigator';
 import { useFonts } from 'expo-font';
 import LoginStackNavigator from './app/navigators/LoginStackNavigator';
 
@@ -21,6 +20,7 @@ function App() {
     <NavigationContainer>
       <LoginStackNavigator/>
     </NavigationContainer>
+
   );
 }
 
