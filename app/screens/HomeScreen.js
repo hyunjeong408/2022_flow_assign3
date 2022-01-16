@@ -1,7 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { Component, useState } from 'react';
-import { StyleSheet, View, Text, ImageBackground,Image,TouchableOpacity, Modal, Button,ScrollView} from 'react-native';
+import { StyleSheet, View, Text, ImageBackground,Image,TouchableOpacity, Modal, Button,ScrollView, SafeAreaView} from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 // import { ScrollView } from 'react-native-gesture-handler';
 // import Modal from 'react-native-simple-modal';
@@ -41,10 +41,20 @@ const HomeScreenOrigin = ({navigation}) => {
     return(
         <ImageBackground source={image} resizeMode='stretch' style={styles.image}>
 
-        <TouchableOpacity style= {{ flex: 0.5}}
+        <TouchableOpacity style= {{ flex: 0.5, alignSelf: 'center'}}
         onPress = {() => navigation.navigate('HomeZoom') }>
         
             <Image source = {require('../assets/main_icon_tiger.png')} style={{flex:1, width:300}} resizeMode= {'contain'}/>
+
+        </TouchableOpacity>
+
+        <TouchableOpacity style= {{ flex: 0.1, alignItems:'flex-end', marginRight: -50, marginBottom: -70}}
+        onPress = {() => navigation.navigate('HomeZoom') }>
+
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                <Text style= {{fontSize:30, alignSelf:'center', justifyContent:'center'}}>서신 작성하기</Text>
+                <Image source = {require('../assets/main_icon_write_letter.png')} style={{height:150}} resizeMode= {'contain'}/>
+            </View>
 
         </TouchableOpacity>
 
@@ -93,11 +103,20 @@ const HomeScreenZoom = ({navigation}) => {
 
     function returnImage(i) {
         if (index+i < data.length-1){
-            return(
-                <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'baseline'}} onPress={() => {setFromNickName(data[index+i].msg_from_nick); setContents(data[index+i].msg_contents);setModalVisible(true)}}>
-                    <Image source = {iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
-                </TouchableOpacity>
-            )
+             if (i ===0 || i===2 ||i === 4 || i === 6){
+                return(
+                    <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-end'}} onPress={() => {setFromNickName(data[index+i].msg_from_nick); setContents(data[index+i].msg_contents);setModalVisible(true)}}>
+                        <Image source = {iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                    </TouchableOpacity>
+                )
+            }
+            else{
+                return(
+                    <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-start', justifyContent: 'flex-end'}} onPress={() => {setFromNickName(data[index+i].msg_from_nick); setContents(data[index+i].msg_contents);setModalVisible(true)}}>
+                        <Image source = {iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                    </TouchableOpacity>
+                )
+            }
         }else{
             return(
                 <View  style = {{flex:0.2, width: 80, alignSelf:'baseline'}}></View>
@@ -107,16 +126,17 @@ const HomeScreenZoom = ({navigation}) => {
     }
     
     return(
-        <ImageBackground source={image} resizeMode='stretch' style={styles.image}>
+        <ImageBackground source={image} resizeMode='stretch' style={{flex:1, alignItems:'center'}}>
                 <Modal
                     style={{flex:1 ,justifyContent:'center', alignSelf: 'center', alignItems:'center'}}
                     animationType="slide"
                     transparent = {true}
                     visible={modalVisible}
-                    onRequestClose={() => { setModalVisible(!modalVisible); }}
+                    onRequestClose={() => { setModalVisible(!modalVisible);
+                    }}
                 >
-                    <View style={{flex:0.8,justifyContent: 'center', resizeMode: 'contain', marginTop: 100}}>
-                        <ImageBackground source = {require('../assets/main_icon_letter.png')} style={{flex: 1, resizeMode: 'stretch', justifyContent: 'center'}}>
+                    <SafeAreaView style={{flex:0.8,justifyContent: 'center', marginTop: 100}}>
+                        <ImageBackground source = {require('../assets/main_icon_letter.png')} style={{flex:1, justifyContent: 'center', resizeMode:'contain'}}>
                             <View style={{flex:0.55}}>
                                 <Text style={{flex:0.1,width:200, alignSelf: 'center', fontSize: 17, marginTop:10, marginTop: 10}}>{fromNickname} </Text>
                                 <ScrollView style={{flex:1,height:200,width:200, alignSelf: 'center', marginTop:10}}>
@@ -127,7 +147,7 @@ const HomeScreenZoom = ({navigation}) => {
                                 </TouchableOpacity>
                             </View>
                         </ImageBackground>
-                    </View>
+                    </SafeAreaView>
 
             </Modal>
 
@@ -153,7 +173,7 @@ const HomeScreenZoom = ({navigation}) => {
 
                     <View style={{flex:0.5, justifyContent:'center'}}>
                         <TouchableOpacity style={{flex:1, alignSelf:'center'}} onPress = {() => navigation.navigate('HomeOrigin')}>
-                            <Text style={{flex:1, fontSize: 30}}> 집으로.</Text>
+                            <Text style={{flex:1, fontSize: 30}}> 마당으로</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -175,7 +195,6 @@ const styles = StyleSheet.create({
     },
     image: {
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center'
     },
     text: {
