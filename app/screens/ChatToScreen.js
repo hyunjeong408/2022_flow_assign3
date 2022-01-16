@@ -30,7 +30,9 @@ function ChatFromScreen({route, navigation}){
             </View>
             
             <View style={styles.iconView}>
+                <View style={styles.iconBack}>
                 <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/medal.png')}/>
+                </View>
             </View>
         </ImageBackground>
     );
@@ -71,7 +73,7 @@ const styles = StyleSheet.create({
     iconBack: {
         width: '60%',
         height: '90%',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent:'center',
     },
     title: {

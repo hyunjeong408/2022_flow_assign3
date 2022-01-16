@@ -5,7 +5,7 @@ import * as Google from 'expo-google-app-auth';
 
 import signInLogo from '../assets/btn_google_signin.png';
 
-const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
+const StatusBarHeight = StatusBar.currentHeight;
 
 function LoginScreen(props) {
     useEffect(() => {

@@ -8,8 +8,6 @@ import HomeScreen from '../screens/HomeScreen';
 import ChatStackNavigator from './ChatStackNavigator';
 import SettingScreen from '../screens/SettingScreen';
 
-
-
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigator(){

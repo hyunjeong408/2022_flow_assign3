@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import testData from '../assets/testJSON.json';
 import color from '../config/color';
 
-const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
+const StatusBarHeight = StatusBar.currentHeight;
 
 const userEmail = "aaa@gmail.com";
 const userNickname = "aaa";

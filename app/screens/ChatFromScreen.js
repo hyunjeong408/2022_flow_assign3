@@ -1,12 +1,20 @@
 import React from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { StyleSheet, View, Text, StatusBar, ImageBackground, Platform, Image, ScrollView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { StyleSheet, View, Text, StatusBar, ImageBackground, Platform, Image, ScrollView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
+const StatusBarHeight = StatusBar.currentHeight;
 
 function ChatFromScreen({route, navigation}){
+    const navigations = useNavigation();
     const {status, msg} = route.params;
+    const moveToSendPage = () => {
+        navigation.navigate('CHAT_SEND', {
+            sender: msg.msg_to_nick,
+            getter: msg.msg_from_nick,
+        });
+    }
     return(
         <ImageBackground
         resizeMode='stretch'
@@ -30,7 +38,10 @@ function ChatFromScreen({route, navigation}){
             </View>
 
             <View style={styles.iconView}>
-                <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/paperpen.png')}/>
+                <TouchableOpacity style={styles.iconBack} onPress={()=>moveToSendPage()}>
+                    <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/paperpen.png')}/>
+                </TouchableOpacity>
+                {/* <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/paperpen.png')}/> */}
             </View>
         </ImageBackground>
     );
@@ -71,7 +82,8 @@ const styles = StyleSheet.create({
     iconBack: {
         width: '60%',
         height: '80%',
-        alignItems: 'center',
+        alignItems: 'flex-end',
+        marginRight: 10,
         justifyContent:'center',
     },
     title: {
