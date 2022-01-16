@@ -36,7 +36,7 @@ function LoginScreen(props) {
             });
             if(type === "success"){
                 console.log(user);
-                goMainScreen();
+                goMainScreen(user);
             }
             else {
                 console.log("Permission denied.");
@@ -47,7 +47,9 @@ function LoginScreen(props) {
 
     }
 
-    function goMainScreen(){
+    function goMainScreen(user){
+        global.USER_EMAIL = user.email;
+        global.USER_NAME = user.name;
         props.navigation.navigate('MAIN');
     }
 

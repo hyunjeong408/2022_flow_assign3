@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
+
+// import './app/GlobalVar';
 import LoginStackNavigator from './app/navigators/LoginStackNavigator';
 
 function App() {
@@ -15,6 +17,9 @@ function App() {
   if (!loaded) {
     return null;
   }
+
+  global.USER_EMAIL = 'defaultEmail';
+  global.USER_NAME = 'defaultName';
 
   return (
     <NavigationContainer>

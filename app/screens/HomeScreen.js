@@ -42,7 +42,7 @@ const HomeScreenOrigin = ({navigation}) => {
         <ImageBackground source={image} resizeMode='stretch' style={styles.image}>
 
         <TouchableOpacity style= {{ flex: 0.5}}
-        onPress = {() => navigation.navigate('HomeZoom') }>
+        onPress = {() => navigation.navigate('HomeZoom')}>
         
             <Image source = {require('../assets/main_icon_tiger.png')} style={{flex:1, width:300}} resizeMode= {'contain'}/>
 
