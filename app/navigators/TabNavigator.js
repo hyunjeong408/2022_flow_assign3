@@ -6,6 +6,7 @@ import color from '../config/color';
 
 import HomeScreen from '../screens/HomeScreen';
 import ChatStackNavigator from './ChatStackNavigator';
+import SettingScreen from '../screens/SettingScreen';
 
 
 
@@ -17,22 +18,23 @@ export default function TabNavigator(){
         screenOptions={({route}) => ({
             tabBarIcon: ({focused}) =>{
                 let iconName;
-                let iconColor = focused ? 'white' : color.tigerorange;
 
-                if(route.name === "Home")  iconName = 'home';
-                else iconName = 'message';
+                if(route.name === "Home") iconName = focused ? 'home' : 'home-outline';
+                else if(route.name === "Chat") iconName = focused ? 'message' : 'message-outline';
+                else iconName = focused ? 'account': 'account-outline';
 
-                return <Icon name={iconName} color={iconColor} size={30}/>;
+                return <Icon name={iconName} color={color.tigerorange} size={30}/>;
             }
         })}
         tabBarOptions={{
-            activeBackgroundColor: color.tigerorange,
-            inactiveBackgroundColor: 'white',
+            // activeBackgroundColor: color.tigerorange,
+            // inactiveBackgroundColor: 'white',
             showLabel: false,
           }}
         >
             <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
             <Tab.Screen name="Chat" component={ChatStackNavigator} options={{headerShown: false}}/>
+            <Tab.Screen name="Setting" component={SettingScreen} options={{headerShown: false}}/>
         </Tab.Navigator>
     );
 }

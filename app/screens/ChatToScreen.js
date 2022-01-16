@@ -30,7 +30,7 @@ function ChatFromScreen({route, navigation}){
             </View>
             
             <View style={styles.iconView}>
-                <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/paperpen.png')}/>
+                <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/medal.png')}/>
             </View>
         </ImageBackground>
     );
