@@ -29,7 +29,7 @@ class HomeScreen extends Component {
         return(
             <View style = {styles.container}>
                             <Stack.Navigator>
-                                <Stack.Screen name='HomeOrigin' component={HomeScreenOrigin}/>
+                                <Stack.Screen name='HomeOrigin' component={HomeScreenOrigin} options={{ title: 'HomeOrigin', headerShown: false}}/>
                                 <Stack.Screen name='HomeZoom' component={HomeScreenZoom}/>
                             </Stack.Navigator>
             </View>
