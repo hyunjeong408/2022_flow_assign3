@@ -169,9 +169,9 @@
             "msg_id": 0,
             "msg_to_id": "aaa@gmail.com",
             "msg_from_id": "ccc@gmail.com",
-            "msg_from_nick": "ccc",
+            "msg_from_nick": "딸기가 좋아ㅏㅏ",
             "msg_contents": "안녕 aaa야 몰입캠프 재밌었어",
-            "icon_id": "1"
+            "icon_id": 0
         },
         {
             "msg_id": 1,
@@ -179,7 +179,7 @@
             "msg_from_id": "aaa@gmail.com",
             "msg_from_nick": "aaa",
             "msg_contents": "ccccccccccc to aaaaaaaaaaaa",
-            "icon_id": "2"
+            "icon_id": 1
         },
         {
             "msg_id": 2,
@@ -187,7 +187,7 @@
             "msg_from_id": "fff@gmail.com",
             "msg_from_nick": "fff",
             "msg_contents": "동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리 기상일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세 가을 하늘 공활한데 높고 구름 없이 밝은 달은 우리 가슴 일편단심일세 무궁화 삼천리 화려 강산 대한 사람 대한으로 길이 보전하세",
-            "icon_id": "3"
+            "icon_id": 2
 
         },
         {
@@ -196,7 +196,7 @@
             "msg_from_id": "bbb@gmail.com",
             "msg_from_nick": "bbb",
             "msg_contents": "aaa야 나는 bbb야",
-            "icon_id": "2"
+            "icon_id": 3
         },
         {
             "msg_id": 4,
@@ -204,7 +204,7 @@
             "msg_from_id": "aaa@gmail.com",
             "msg_from_nick": "aaa",
             "msg_contents": "eeeaaa",
-            "icon_id": "2"
+            "icon_id": 4
         },
         {
             "msg_id": 5,
@@ -212,7 +212,7 @@
             "msg_from_id": "hhh@gmail.com",
             "msg_from_nick": "hhh",
             "msg_contents": "I've paid my dues Time after time I've done my sentence But committed no crime And bad mistakes I've made a few I've had my share of sand Kicked in my face But I've come through And we mean to go on and on and on and on We are the champions, my friends And we'll keep on fighting till the end We are the champions We are the champions No time for losers",
-            "icon_id": "1"
+            "icon_id": 5
         },
         {
             "msg_id": 6,
@@ -220,7 +220,7 @@
             "msg_from_id": "hhh@gmail.com",
             "msg_from_nick": "hhh",
             "msg_contents": "내가 보낸 노래는 Queen 의 We are the Champions 야.",
-            "icon_id": "3"
+            "icon_id": 6
         },
         {
             "msg_id": 7,
@@ -228,7 +228,7 @@
             "msg_from_id": "ccc@gmail.com",
             "msg_from_nick": "ccc",
             "msg_contents": "ccc가 보냄",
-            "icon_id": "2"
+            "icon_id": 7
 
         },
         {
@@ -237,7 +237,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 8
         },
         {
             "msg_id": 9,
@@ -245,7 +245,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 9
         },
         {
             "msg_id": 10,
@@ -253,7 +253,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 10
         },
         {
             "msg_id": 11,
@@ -261,7 +261,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 11
         },
         {
             "msg_id": 12,
@@ -269,7 +269,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 12
         },
         {
             "msg_id": 13,
@@ -277,7 +277,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 13
         },
         {
             "msg_id": 14,
@@ -285,7 +285,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 14
         },
         {
             "msg_id": 15,
@@ -293,7 +293,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 15
         },
         {
             "msg_id": 16,
@@ -301,7 +301,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 16
         },
         {
             "msg_id": 17,
@@ -309,7 +309,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 17
         },
         {
             "msg_id": 18,
@@ -317,7 +317,7 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 18
         },
         {
             "msg_id": 19,
@@ -325,7 +325,39 @@
             "msg_from_id": "ddd@gmail.com",
             "msg_from_nick": "ddd",
             "msg_contents": "Hello AAA!",
-            "icon_id": "1"
+            "icon_id": 19
+        },
+        {
+            "msg_id": 20,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "ddd@gmail.com",
+            "msg_from_nick": "ddd",
+            "msg_contents": "Hello AAA!",
+            "icon_id": 20
+        },
+        {
+            "msg_id": 21,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "ddd@gmail.com",
+            "msg_from_nick": "ddd",
+            "msg_contents": "Hello AAA!",
+            "icon_id": 21
+        },
+        {
+            "msg_id": 22,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "ddd@gmail.com",
+            "msg_from_nick": "ddd",
+            "msg_contents": "Hello AAA!",
+            "icon_id": 22
+        },
+        {
+            "msg_id": 23,
+            "msg_to_id": "aaa@gmail.com",
+            "msg_from_id": "ddd@gmail.com",
+            "msg_from_nick": "ddd",
+            "msg_contents": "Hello AAA!",
+            "icon_id": 23
         }
     ]
 }
