@@ -1,51 +1,53 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Text, FlatList, StatusBar, Platform, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
+import { StyleSheet, View, Text, FlatList, StatusBar, Platform, TouchableOpacity, Dimensions, ImageBackground, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import testData from '../assets/testJSON.json';
 import color from '../config/color';
 
 const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
-const userEmail = "aaa@gmail.com"; //데이터 들어오면 global.USER_EMAIL 사용
-const userNickname = "aaa";//데이터 들어오면 global.USER_NAME 사용
-
-const userData = testData.user;
-const msgData = testData.message;
-
 const listTab = [
-    { status: 'FROM' },
-    { status: 'TO' }
+    { status: '받은편지' },
+    { status: '보낸편지' }
 ]
 
-const Item = ({ msg_from_nick, msg_contents }) => (
+const Item = ({ msg_to_nick, msg_from_nick, msg_contents }) => (
     <View style={styles.item}>
-        <Text numberOfLines={1} style={styles.title}>{msg_from_nick}</Text>
+        <Text numberOfLines={1} style={styles.title}>{msg_to_nick} 에게 {msg_from_nick}</Text>
         <Text numberOfLines={2} style={styles.contents}>{msg_contents}</Text>
     </View>
 );
 
-const ChatScreen = (props) => {
-    const [status, setStatus] = useState('FROM');
-    const [msgDataFiltered, setDatalist] = useState([...([...msgData].reverse()).filter(e=>e.msg_to_id === userEmail)]);
-    const setStatusFilter = status => {
-        if(status === 'FROM'){
-            setDatalist([...([...msgData].reverse()).filter(e=>e.msg_to_id === userEmail)]);
-        }
-        else if(status === 'TO') {
-            setDatalist([...([...msgData].reverse()).filter(e=>e.msg_from_id === userEmail)])
-        }
-        setStatus(status)
-    }
 
+const ChatScreen = (props) => {
+    const [status, setStatus] = useState('받은편지');
+    const [msgDataFiltered, setDatalist] = useState(global.fromMsg);
+    const setStatusFilter = (status) => {
+        if(status === '받은편지'){//fromID에서 검색
+            setDatalist(global.fromMsg);
+            setStatus(status);
+        }
+        else if(status === '보낸편지') {
+            setDatalist(global.toMsg);
+            setStatus(status);
+        }
+    }
+    
     const renderItem = ({item})=>(
-        <TouchableOpacity onPress={()=>moveToDetailPage(item)}>
-            <Item msg_from_nick={item.msg_from_nick} msg_contents={item.msg_contents}/>
+        <TouchableOpacity onPress={()=>{moveToDetailPage({
+            fromId: item.fromId,
+            toId: item.toId,
+            fromNickname: item.fromNickname,
+            toNickname: item.toNickname,
+            msgContents: item.msgContents,
+            id: item.id,
+        });}}>
+            <Item msg_to_nick={item.toNickname} msg_from_nick={item.fromNickname} msg_contents={item.msgContents}/>
         </TouchableOpacity>
     );
     
     const moveToDetailPage = (item) => {
-        if(status === 'FROM'){
+        if(status === '받은편지'){
             props.navigation.navigate('CHAT_FROM', {
                 status: status,
                 msg: item,
@@ -88,12 +90,12 @@ const ChatScreen = (props) => {
                     data = {msgDataFiltered}
                     style = {styles.listStyle}
                     renderItem={renderItem}
-                    keyExtractor={(e, item)=>item.msg_id}
+                    keyExtractor={(e, item)=>item.id}
                     />
                 </View>
             </View>
         </ImageBackground>
-    );
+    );//}
 }
 
 

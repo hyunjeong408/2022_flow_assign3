@@ -8,8 +8,10 @@ function ChatFromScreen({route, navigation}){
     const {status, msg} = route.params;
     const moveToSendPage = () => {
         navigation.navigate('CHAT_SEND', {
-            sender: msg.msg_to_nick,
-            getter: msg.msg_from_nick,
+            sender_id: msg.toId,
+            sender_nick: msg.toNickname,
+            getter_id: msg.fromId,
+            getter_nick: msg.fromNickname,
         });
     }
     return(
@@ -25,13 +27,13 @@ function ChatFromScreen({route, navigation}){
             <View style={styles.letterView}>
                 <ImageBackground style={styles.letterBack} resizeMode='contain' source={require('../assets/letter.png')}>
                     <View style={styles.letterBox}>
-                        <Text style={styles.title}>{msg.msg_to_nick} 에게</Text>
+                        <Text style={styles.title}>{msg.toNickname} 에게</Text>
 
                         <ScrollView style={styles.contents}>
-                            <Text style={styles.contentsText}>{msg.msg_contents}</Text>
+                            <Text style={styles.contentsText}>{msg.msgContents}</Text>
                         </ScrollView>
 
-                        <Text style={styles.endTitle}>{msg.msg_from_nick} 씀</Text>
+                        <Text style={styles.endTitle}>{msg.fromNickname} 씀</Text>
                     </View>
                 </ImageBackground>
             </View>

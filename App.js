@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
@@ -51,6 +51,10 @@ function App() {
   global.USER_ID = '';
   global.USER_EMAIL = 'defaultEmail';
   global.USER_NAME = 'defaultName';
+  global.OWNER = global.USER_ID;
+
+  global.fromMsg = [];
+  global.toMsg = [];
 
   return (
     

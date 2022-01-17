@@ -53,7 +53,6 @@ function LoginScreen(props) {
         global.iconList=[]
         postUserAccount();
         getUserAccount();
-
         props.navigation.navigate('MAIN');
     }
 
@@ -83,8 +82,9 @@ function LoginScreen(props) {
             }).then(data=>data.json())
             .then(json=>{
                 global.USER_ID = json.id;
-                postUserBag()
-                console.log(json.id);
+                global.USER_NAME = json.nickname;
+                postUserBag();
+                fetchData();
             })
     }
 
@@ -103,6 +103,48 @@ function LoginScreen(props) {
             })
     }
 
+    const fetchData = () => {
+        fetch('http://192.249.18.179/api/msg/to/'+global.USER_ID,
+        {
+          method: 'GET',
+          headers: {
+              'Accept': 'application/json'
+          },
+        }).then(data=>data.json())
+        .then(json=>{
+            json.map(e=>{
+                const {fromId, toId, fromNickname, toNickname, msgContents, id} = e;
+                global.fromMsg.push({
+                    fromId: fromId,
+                    toId: toId,
+                    fromNickname: fromNickname,
+                    toNickname: toNickname,
+                    msgContents: msgContents,
+                    id: id,
+                })
+            })
+        });
+        fetch('http://192.249.18.179/api/msg/from/'+global.USER_ID,
+        {
+          method: 'GET',
+          headers: {
+          },
+        }).then(data=>data.json())
+        .then(json=>{
+            json.map(e=>{
+                const {fromId, toId, fromNickname, toNickname, msgContents, id} = e;
+                var newJSON = {
+                    fromId: fromId,
+                    toId: toId,
+                    fromNickname: fromNickname,
+                    toNickname: toNickname,
+                    msgContents: msgContents,
+                    id: id,
+                }
+                global.toMsg.push(newJSON);
+            })
+        });
+      };
     return (
         <ImageBackground
         style={styles.backgroud}
