@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, StatusBar, ImageBackground, Platform, Modal, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { BlurView } from 'expo-blur';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconIon from 'react-native-vector-icons/Ionicons';
 
 import color from '../config/color';
 
@@ -10,6 +11,7 @@ const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 function SettingScreen({navigation}){
     const [modalVisible, setModalVisible] = useState(false);
     const [userName, setUserName] = useState('');
+    const [findName, setFindName] = useState('');
 
     const goLoginScreen = () => {
         global.USER_EMAIL = 'defaultEmail';
@@ -19,6 +21,10 @@ function SettingScreen({navigation}){
 
     const editUserName = (userName) => {
         global.USER_NAME = userName;
+    }
+
+    const searchUserName = (userName) => {
+        console.log(userName);
     }
 
     return(
@@ -64,7 +70,15 @@ function SettingScreen({navigation}){
                     <View style={styles.settingBox}>
                         <Text style={styles.title}>{(global.USER_NAME).substring(0, 7)}</Text>
                         <Text style={styles.subtitle}>{global.USER_EMAIL}</Text>
-                        <Text style={styles.line} numberOfLines={1}>_____________</Text>
+                        <View style={styles.searchView}>
+                            <TextInput
+                            style={styles.inputStyle}
+                            maxLength={7}
+                            placeholder='SEARCH'
+                            onChangeText={name => setFindName(name)}
+                            ></TextInput>
+                            <IconIon name={'md-search'} size={30} onPress={()=>{searchUserName(findName);}}/>
+                        </View>
 
                         <TouchableHighlight style={styles.editBtn} onPress={()=>{setModalVisible(true)}}>
                             <Text style={{fontFamily: 'ejr', fontSize: 20, color: 'white'}}>EDIT</Text>
@@ -119,13 +133,20 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 15,
         fontFamily: 'daegunL',
+        marginBottom: 15,
     },
-    line: {
-        width: '80%',
-        textAlign: 'center',
-        fontWeight: 'bold',
-        marginTop: 7,
-        marginBottom: 40,
+    inputStyle: {
+        width: '70%',
+        height: 40,
+        borderBottomColor: 'black',
+        borderBottomWidth: 1,
+    },
+    searchView: {
+        flexDirection: 'row',
+        width: '90%',
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        marginBottom: 30,
     },
     btnGroup: {
         width: '80%',
@@ -139,7 +160,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 15,
         paddingRight: 15,
-        marginBottom: 30,
+        marginBottom: 20,
         alignItems: 'center',
         backgroundColor: color.tigerorange,
     },
@@ -159,9 +180,9 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 15,
         paddingRight: 15,
-        marginBottom: 20,
+        marginBottom: 10,
         alignItems: 'center',
-        backgroundColor: 'red',
+        backgroundColor: color.logoutRed,
     },
     centeredView: {
         flex: 1,

@@ -51,11 +51,13 @@ function LoginScreen(props) {
         global.USER_EMAIL = user.email;
         global.USER_NAME = user.name;
         global.iconList=[]
-        getRepotNo();
+        postUserAccount();
+        getUserAccount();
+
         props.navigation.navigate('MAIN');
     }
 
-    function getRepotNo(){
+    function postUserAccount(){
         fetch(
           'http://192.249.18.179/api/users',
           {
@@ -68,6 +70,37 @@ function LoginScreen(props) {
                 nickname: global.USER_NAME
             })
           })
+    }
+
+    function getUserAccount(){
+        fetch(
+            'http://192.249.18.179/api/users/email/'+global.USER_EMAIL,
+            {
+              method: 'GET',
+              headers: {
+              'Content-type': 'application/json'
+              },
+            }).then(data=>data.json())
+            .then(json=>{
+                global.USER_ID = json.id;
+                postUserBag()
+                console.log(json.id);
+            })
+    }
+
+    function postUserBag(){
+        fetch(
+            'http://192.249.18.179/api/bags',
+            {
+              method: 'POST',
+              headers: {
+              'Content-type': 'application/json'
+              },
+              body: JSON.stringify({
+                  bag_owner: global.USER_ID,
+                  bag_letter: [],
+              })
+            })
     }
 
     return (

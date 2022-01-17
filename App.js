@@ -48,7 +48,7 @@ function App() {
   if (!loaded) {
     return null;
   }
-
+  global.USER_ID = '';
   global.USER_EMAIL = 'defaultEmail';
   global.USER_NAME = 'defaultName';
 
