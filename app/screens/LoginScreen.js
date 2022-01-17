@@ -5,6 +5,7 @@ import * as Google from 'expo-google-app-auth';
 
 import signInLogo from '../assets/btn_google_signin.png';
 
+
 const StatusBarHeight = StatusBar.currentHeight;
 
 function LoginScreen(props) {
@@ -46,9 +47,12 @@ function LoginScreen(props) {
 
     }
 
+
     function goMainScreen(user){
         global.USER_EMAIL = user.email;
         global.USER_NAME = user.name;
+        global.iconList=[]
+
         props.navigation.navigate('MAIN');
     }
 
@@ -67,7 +71,7 @@ function LoginScreen(props) {
             </View>
             <View style={styles.btnBackView}>
                 <TouchableOpacity
-                    onPress={()=> sinInWithGoogleAsync()}
+                    onPress={()=> goMainScreen()}
                     style={styles.loginButton}
                 >
                     <Image

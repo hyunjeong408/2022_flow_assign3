@@ -11,6 +11,8 @@ const Stack = createStackNavigator();
 
 export default function LoginStackNavigator(){
 
+    global.iconList=[]
+
     const LogoScreen = () => {
         const navigations = useNavigation();
         setTimeout(() => navigations.navigate('LOGIN'), 3000);
