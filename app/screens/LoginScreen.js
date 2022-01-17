@@ -5,8 +5,7 @@ import * as Google from 'expo-google-app-auth';
 
 import signInLogo from '../assets/btn_google_signin.png';
 
-
-const StatusBarHeight = StatusBar.currentHeight;
+const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
 function LoginScreen(props) {
     useEffect(() => {
@@ -29,12 +28,13 @@ function LoginScreen(props) {
     
         return () => backHandler.remove();
       }, []);
-    async function sinInWithGoogleAsync() {
+    async function signInWithGoogleAsync() {
         try {
             const { type, accessToken, user } = await Google.logInAsync({
                 androidClientId: "937160071371-p3jldm60dbc9bci0dijkmg9griqvvvrq.apps.googleusercontent.com",
                 iosClientId:"937160071371-dcjiom1f3k4ofdv2h5ffq2sssronae24.apps.googleusercontent.com",
                 clientId: "937160071371-rf0tggdsr5j0huuuskqfu45suqii9tdm.apps.googleusercontent.com",
+                iosClientId: "937160071371-dcjiom1f3k4ofdv2h5ffq2sssronae24.apps.googleusercontent.com",
             });
             if(type === "success"){
                 goMainScreen(user);
@@ -48,13 +48,60 @@ function LoginScreen(props) {
 
     }
 
-
     function goMainScreen(user){
         global.USER_EMAIL = user.email;
         global.USER_NAME = user.name;
         global.iconList=[]
+        postUserAccount();
+        getUserAccount();
 
         props.navigation.navigate('MAIN');
+    }
+
+    function postUserAccount(){
+        fetch(
+          'http://192.249.18.179/api/users',
+          {
+            method: 'POST',
+            headers: {
+            'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: global.USER_EMAIL,
+                nickname: global.USER_NAME
+            })
+          })
+    }
+
+    function getUserAccount(){
+        fetch(
+            'http://192.249.18.179/api/users/email/'+global.USER_EMAIL,
+            {
+              method: 'GET',
+              headers: {
+              'Content-type': 'application/json'
+              },
+            }).then(data=>data.json())
+            .then(json=>{
+                global.USER_ID = json.id;
+                postUserBag()
+                console.log(json.id);
+            })
+    }
+
+    function postUserBag(){
+        fetch(
+            'http://192.249.18.179/api/bags',
+            {
+              method: 'POST',
+              headers: {
+              'Content-type': 'application/json'
+              },
+              body: JSON.stringify({
+                  bag_owner: global.USER_ID,
+                  bag_letter: [],
+              })
+            })
     }
 
     return (
@@ -72,7 +119,7 @@ function LoginScreen(props) {
             </View>
             <View style={styles.btnBackView}>
                 <TouchableOpacity
-                    onPress={()=> sinInWithGoogleAsync()}
+                    onPress={()=> signInWithGoogleAsync()} //ios 실행 시 props.navigation.navigate('MAIN') 로 바꿔서 실행할 것
                     style={styles.loginButton}
                 >
                     <Image

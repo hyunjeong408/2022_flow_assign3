@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import testData from '../assets/testJSON.json';
 import color from '../config/color';
 
-const StatusBarHeight = StatusBar.currentHeight;
+const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
 const userEmail = "aaa@gmail.com"; //데이터 들어오면 global.USER_EMAIL 사용
 const userNickname = "aaa";//데이터 들어오면 global.USER_NAME 사용
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
     backIconView: {
-        marginTop: StatusBarHeight,
+        marginTop: StatusBarHeight+10,
         height: '5%',
         paddingLeft: 15,
     },

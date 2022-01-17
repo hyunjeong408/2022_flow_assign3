@@ -1,9 +1,8 @@
 import React from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { StyleSheet, View, Text, StatusBar, ImageBackground, Platform, Image, ScrollView } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
+const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
 function ChatFromScreen({route, navigation}){
     const {status, msg} = route.params;

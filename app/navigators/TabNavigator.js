@@ -25,8 +25,6 @@ export default function TabNavigator(){
             }
         })}
         tabBarOptions={{
-            // activeBackgroundColor: color.tigerorange,
-            // inactiveBackgroundColor: 'white',
             showLabel: false,
           }}
         >

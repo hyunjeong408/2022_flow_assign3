@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, StatusBar, ImageBackground, Image, TextInput, T
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-const StatusBarHeight = StatusBar.currentHeight;
+const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
 function SendChatScreen({route, navigation}){
     const {sender, getter} = route.params;
