@@ -2,6 +2,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { Component, useState } from 'react';
 import { StyleSheet, View, Text, ImageBackground,Image,TouchableOpacity, Modal, Button,ScrollView, SafeAreaView} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import { createStackNavigator } from '@react-navigation/stack';
 // import { ScrollView } from 'react-native-gesture-handler';
 // import Modal from 'react-native-simple-modal';
@@ -36,7 +38,10 @@ const GiftDetailScreen = ({navigation,route}) => {
     return(
         <ImageBackground source={image} resizeMode='stretch' style={styles.image}>
                 <View style={{flex:1,justifyContent: 'center'}}>
-                    <ImageBackground source = {require('../assets/main_icon_letter.png')} style={{flex:0.9, justifyContent: 'center', resizeMode:'contain',marginTop:50}}>
+                    <TouchableOpacity style={{flex:0.17, justifyContent:'flex-end', marginLeft:30}} onPress={()=>{navigation.goBack()}}>
+                        <Text style={{fontSize:30,fontFamily:'daegunM'}}>이전으로</Text>
+                    </TouchableOpacity>
+                    <ImageBackground source = {require('../assets/main_icon_letter.png')} style={{flex:0.9, justifyContent: 'center', resizeMode:'contain'}}>
                         <View style={{flex: 0.6, width:250, alignItems: 'center', alignSelf: 'center', justifyContent: 'space-evenly',marginTop:40,marginLeft:-10, flexDirection:'row'}}>
                             <View style = {{flex: 1, justifyContent: 'space-evenly', alignItems: 'center', alignSelf: 'center'}}>
                                 {returnDetailImage(index)}

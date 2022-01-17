@@ -33,6 +33,7 @@ function LoginScreen(props) {
         try {
             const { type, accessToken, user } = await Google.logInAsync({
                 androidClientId: "937160071371-p3jldm60dbc9bci0dijkmg9griqvvvrq.apps.googleusercontent.com",
+                iosClientId:"937160071371-dcjiom1f3k4ofdv2h5ffq2sssronae24.apps.googleusercontent.com",
                 clientId: "937160071371-rf0tggdsr5j0huuuskqfu45suqii9tdm.apps.googleusercontent.com",
             });
             if(type === "success"){
@@ -71,7 +72,7 @@ function LoginScreen(props) {
             </View>
             <View style={styles.btnBackView}>
                 <TouchableOpacity
-                    onPress={()=> goMainScreen()}
+                    onPress={()=> sinInWithGoogleAsync()}
                     style={styles.loginButton}
                 >
                     <Image
