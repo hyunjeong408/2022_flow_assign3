@@ -24,6 +24,9 @@ const GiftScreen = ({navigation}) => {
         return(
             <ImageBackground source={image} resizeMode='stretch' style={styles.image}>
                     <View style={{flex:1,justifyContent: 'center'}}>
+                        <TouchableOpacity style={{flex:0.17, justifyContent:'flex-end', marginLeft:30}} onPress={()=>{navigation.goBack()}}>
+                            <Text style={{fontSize:30,fontFamily:'daegunM'}}>이전으로</Text>
+                        </TouchableOpacity>
                         <ImageBackground source = {require('../assets/main_icon_letter.png')} style={{flex:0.9, justifyContent: 'center', resizeMode:'contain'}}>
                             <View style={{flex: 0.6, width:250, alignItems: 'center', alignSelf: 'center', justifyContent: 'space-evenly',marginTop:40,marginLeft:-10, flexDirection:'row'}}>
                                 <View style = {{flex: 1, justifyContent: 'space-evenly', alignItems: 'center', alignSelf: 'center'}}>
@@ -36,8 +39,9 @@ const GiftScreen = ({navigation}) => {
                                 </View>
                             </View>
                         </ImageBackground>
-                        <Text style= {{fontSize:30, alignSelf:'center', justifyContent:'center',fontFamily:'daegunM', marginTop: 20}}>"원하는 선물"</Text>
-
+                        <View style= {{flex:0.2,alignItems:'center', justifyContent:'space-evenly',flexDirection:'row'}}>
+                            <Text style= {{fontSize:30, alignSelf:'center', justifyContent:'center',fontFamily:'daegunM'}}>"원하는 선물"</Text>
+                        </View>
                     </View>
     
             </ImageBackground>

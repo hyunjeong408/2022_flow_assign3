@@ -1,33 +1,25 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React, { Component, useState } from 'react';
-import { StyleSheet, View, Text, ImageBackground,Image,TouchableOpacity, Modal, Button,ScrollView, SafeAreaView} from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
-// import { ScrollView } from 'react-native-gesture-handler';
-// import Modal from 'react-native-simple-modal';
+import React, { Component, useState, useRef, useEffect } from 'react';
+import { StyleSheet, View, Text, ImageBackground,Image,TouchableOpacity, Modal, Button,ScrollView, SafeAreaView, Animated} from 'react-native';
+import { createStackNavigator, TransitionSpecs, HeaderStyleInterpolators } from '@react-navigation/stack';
 import testData from '../assets/testJSON.json';
 import GiftScreen from'./GiftScreen';
 import GiftDetailScreen from './GiftDetailScreen';
 import GiftMessageScreen from './GiftMessageScreen';
-// import iconList from'../../App';
+
 
 const data = testData.gift;
 var max = parseInt(data.length/8);
 
 
+global.OWNER = global.USER_EMAIL
+
 const image = ({uri: "https://user-images.githubusercontent.com/64190044/149326914-27e77dc8-0160-433b-823d-4eda9d0e6258.png"})
-// const icon_tiger = {uri: "https://user-images.githubusercontent.com/64190044/149455158-87df0ac3-da23-4b22-bcbe-eea3e04f48db.png"}
-// const icon_tiger_glow = {uri: "https://user-images.githubusercontent.com/64190044/149455236-2cf1a4da-4a9b-4db4-b065-90f8d04c0441.png" }
-// iconList.push({uri: "https://user-images.githubusercontent.com/64190044/149472563-11e12aee-87a5-424e-8634-fad61c99b8b1.png"})
-// iconList.push({uri: "https://user-images.githubusercontent.com/64190044/149499243-6df12435-e3cd-4a0e-8cd3-6a9e40568493.png"})
-// iconList.push({uri: "https://user-images.githubusercontent.com/64190044/149500357-bad7502b-11a6-424f-8ede-299ec0d93e5c.png"})
-// iconList.push({uri: "https://user-images.githubusercontent.com/64190044/149499631-adcff1a4-7c1d-48c6-b72c-8c42e2ecb094.png"})
 
 
-// iconList=[];
 
 
 const Stack = createStackNavigator();
+  
 
 class HomeScreen extends Component {
     constructor(props){
@@ -37,11 +29,11 @@ class HomeScreen extends Component {
         return(
             <View style = {styles.container}>
                             <Stack.Navigator>
-                                <Stack.Screen name='HomeOrigin' component={HomeScreenOrigin} options={{ title: 'HomeOrigin', headerShown: false}}/>
-                                <Stack.Screen name='HomeZoom' component={HomeScreenZoom}/>
-                                <Stack.Screen name='Gift' component={GiftScreen}/>
-                                <Stack.Screen name='GiftDetail' component={GiftDetailScreen}/>
-                                <Stack.Screen name='GiftMessage' component={GiftMessageScreen}/>
+                                <Stack.Screen name='HomeOrigin' component={HomeScreenOrigin} options={{headerShown: false}}/>
+                                <Stack.Screen name='HomeZoom' component={HomeScreenZoom} options={{headerShown: false}}/>
+                                <Stack.Screen name='Gift' component={GiftScreen} options={{headerShown: false}}/>
+                                <Stack.Screen name='GiftDetail' component={GiftDetailScreen} options={{headerShown: false}}/>
+                                <Stack.Screen name='GiftMessage' component={GiftMessageScreen} options={{headerShown: false}}/>
 
                             </Stack.Navigator>
             </View>
@@ -50,25 +42,49 @@ class HomeScreen extends Component {
 }
 
 const HomeScreenOrigin = ({navigation}) => {
+
+    function isOwner () {
+        console.log(global.OWNER)
+        console.log(global.USER_EMAIL)
+        console.log("------------------")
+        if (global.OWNER == global.USER_EMAIL){
+            return(
+                <TouchableOpacity style= {{flex: 1}}>
+                    <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                        <Text style= {{fontSize:30, alignSelf:'center', justifyContent:'center',fontFamily:'daegunM', marginRight:-20}}>"내 복주머니"</Text>
+                        <Image source = {require('../assets/main_icon_write_letter.png')} style={{height:150}} resizeMode= {'contain'}/>
+                    </View>
+                </TouchableOpacity>
+            );
+        } else{
+            console.log("in else!!")
+            return(
+                <TouchableOpacity style= {{flex: 1}}
+                onPress = {() => navigation.navigate('Gift') }>
+                    <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+                        <Text style= {{fontSize:30, alignSelf:'center', justifyContent:'center',fontFamily:'daegunM', marginRight:-20}}>"서신 작성하기"</Text>
+                        <Image source = {require('../assets/main_icon_write_letter.png')} style={{height:150}} resizeMode= {'contain'}/>
+                    </View>
+                </TouchableOpacity>
+                );
+        }
+    }
+
     return(
         <ImageBackground source={image} resizeMode='stretch' style={styles.image}>
 
+        <View style={{ marginTop:-100,marginBottom:100,marginLeft:15}}>
+            <Text style= {{fontSize:20,fontFamily:'gowunBold'}}>"{global.USER_NAME}"님의 복주머니</Text>
+        </View>
         <TouchableOpacity style= {{ flex: 0.5, alignSelf: 'center'}}
         onPress = {() => navigation.navigate('HomeZoom') }>
         
             <Image source = {require('../assets/main_icon_tiger.png')} style={{flex:1, width:300}} resizeMode= {'contain'}/>
 
         </TouchableOpacity>
-
-        <TouchableOpacity style= {{ flex: 0.1, alignItems:'flex-end', marginRight: -50, marginBottom: -70}}
-        onPress = {() => navigation.navigate('Gift') }>
-
-            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
-                <Text style= {{fontSize:30, alignSelf:'center', justifyContent:'center',fontFamily:'daegunM', marginRight:-20}}>"서신 작성하기"</Text>
-                <Image source = {require('../assets/main_icon_write_letter.png')} style={{height:150}} resizeMode= {'contain'}/>
-            </View>
-
-        </TouchableOpacity>
+        <View style= {{ flex: 0.1, alignItems:'flex-end', marginRight: -50, marginBottom: -70}}> 
+            {isOwner()}
+        </View>
 
         </ImageBackground>
 
@@ -89,8 +105,8 @@ const HomeScreenZoom = ({navigation}) => {
         if (kind === 0){
             return ( 
                 (index > 7)
-                ?(<TouchableOpacity style={{flex:1, alignItems:'flex-end'}} onPress={() => setIndex(index - 8)}>
-                    <Text style={{flex:1,fontSize: 30, fontFamily:'daegunM'}}> 이전</Text>
+                ?(<TouchableOpacity style={{flex:0.6, alignItems:'flex-end',backgroundColor:'white',border:5,borderRadius:5, opacity:0.9, padding:3}} onPress={() => setIndex(index - 8)}>
+                    <Text style={{flex:1,fontSize: 30, fontFamily:'daegunM'}}>이전</Text>
                 </TouchableOpacity>)
                 : (null)
             
@@ -100,8 +116,8 @@ const HomeScreenZoom = ({navigation}) => {
 
             return ( 
                 (max > (index/8))
-                ?(<TouchableOpacity style={{flex:1, alignItems:'flex-start'}} onPress={() => setIndex(index + 8) }>
-                    <Text style={{flex:1,fontSize: 30, fontFamily:'daegunM'}}> 다음</Text>
+                ?(<TouchableOpacity style={{flex:0.6, alignItems:'flex-start',backgroundColor:'white',border:5,borderRadius:5, opacity:0.9, padding:3}} onPress={() => setIndex(index + 8) }>
+                    <Text style={{flex:1,fontSize: 30, fontFamily:'daegunM'}}>다음</Text>
                 </TouchableOpacity>)
                 :(null)
             )
@@ -109,38 +125,68 @@ const HomeScreenZoom = ({navigation}) => {
     }
 
     function returnImage(i) {
-        if (index+i < data.length-1){
-             if (i ===0 || i===2 ||i === 4 || i === 6){
-                console.log("in0248")
+        if (global.OWNER == global.USER_EMAIL){
+            if (index+i < data.length-1){
+                if (i ===0 || i===2 ||i === 4 || i === 6){
+                   console.log("in0248")
+   
+                   return(
+                       <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-end'}} onPress={() => {setFromNickName(data[index+i].msg_from_nick); setContents(data[index+i].msg_contents);setModalVisible(true)}}>
+                           <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                       </TouchableOpacity>
+                   )
+               }
+               else{
+                   console.log("in not 0248")
+                   return(
+                       <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-start', justifyContent: 'flex-end'}} onPress={() => {setFromNickName(data[index+i].msg_from_nick); setContents(data[index+i].msg_contents);setModalVisible(true)}}>
+                           <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                       </TouchableOpacity>
+                   )
+               }
+           }else{
+               console.log("in else stmt")
+               return(
+                   <View  style = {{flex:0.2, width: 80, alignSelf:'baseline'}}></View>
+               )
+           }
+        }else {
+            if (index+i < data.length-1){
+                if (i ===0 || i===2 ||i === 4 || i === 6){
+                   console.log("in0248")
+   
+                   return(
+                       <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-end'}}>
+                           <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                       </TouchableOpacity>
+                   )
+               }
+               else{
+                   console.log("in not 0248")
+                   return(
+                       <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-start', justifyContent: 'flex-end'}}>
+                           <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                       </TouchableOpacity>
+                   )
+               }
+           }else{
+               console.log("in else stmt")
+               return(
+                   <View  style = {{flex:0.2, width: 80, alignSelf:'baseline'}}></View>
+               )
+           }
 
-                return(
-                    <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-end'}} onPress={() => {setFromNickName(data[index+i].msg_from_nick); setContents(data[index+i].msg_contents);setModalVisible(true)}}>
-                        <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
-                    </TouchableOpacity>
-                )
-            }
-            else{
-                console.log("in not 0248")
-                return(
-                    <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-start', justifyContent: 'flex-end'}} onPress={() => {setFromNickName(data[index+i].msg_from_nick); setContents(data[index+i].msg_contents);setModalVisible(true)}}>
-                        <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
-                    </TouchableOpacity>
-                )
-            }
-        }else{
-            console.log("in else stmt")
-            return(
-                <View  style = {{flex:0.2, width: 80, alignSelf:'baseline'}}></View>
-            )
         }
+
         
     }
     
     return(
+        
         <ImageBackground source={image} resizeMode='stretch' style={{flex:1, alignItems:'center'}}>
                 <Modal
                     style={{flex:1 ,justifyContent:'center', alignSelf: 'center', alignItems:'center'}}
-                    animationType="slide"
+                    animationType="fade"
                     transparent = {true}
                     visible={modalVisible}
                     onRequestClose={() => { setModalVisible(!modalVisible);
@@ -153,8 +199,8 @@ const HomeScreenZoom = ({navigation}) => {
                                 <ScrollView style={{flex:1,height:200,width:200, alignSelf: 'center', marginTop:10}}>
                                     <Text style={{flex:1, fontSize: 15, fontFamily:'gowun'}}>{contents}</Text>
                                 </ScrollView>
-                                <TouchableOpacity style={{flex:0.1 ,width: 200 , alignSelf:'center', justifyContent: 'center',marginTop:20}} onPress={() => setModalVisible(!modalVisible)}>
-                                    <Text style={{alignSelf:'center',fontSize: 25, fontFamily:'daegunM'}}>닫기</Text>
+                                <TouchableOpacity style={{flex:0.15 ,width: 200 , alignSelf:'center', justifyContent: 'center',marginTop:20}} onPress={() => setModalVisible(!modalVisible)}>
+                                    <Text style={{flex:1,alignSelf:'center',fontSize: 25, fontFamily:'daegunM'}}>닫기</Text>
                                 </TouchableOpacity>
                             </View>
                         </ImageBackground>
@@ -163,7 +209,7 @@ const HomeScreenZoom = ({navigation}) => {
             </Modal>
 
             <ImageBackground source = {require('../assets/main_icon_tiger_glow.png')} style={{flex: 1,width: 700, resizeMode: 'cover', justifyContent: 'flex-start'}}>
-                <View style={{flex: 0.85, width:380, alignItems: 'center', alignSelf: 'center', justifyContent: 'space-evenly', flexDirection:'row', marginTop: -60}}>
+                <View style={{flex: 0.95, width:380, alignItems: 'center', alignSelf: 'center', justifyContent: 'space-evenly', flexDirection:'row',marginBottom:50}}>
                     <View style = {{flex: 1, justifyContent: 'space-evenly', alignItems: 'center', alignSelf: 'center'}}>
                         {returnImage(0)}
                         {returnImage(1)}
@@ -177,14 +223,14 @@ const HomeScreenZoom = ({navigation}) => {
                         {returnImage(7)}
                     </View>
                 </View>
-                <View style={{flex:0.1, flexDirection: 'row', marginBottom: -50}}>
+                <View style={{flex:0.1, flexDirection: 'row'}}>
                     <View style={{flex:0.5,justifyContent:'center'}}>
                         {setButton(0)}
                     </View>
 
                     <View style={{flex:0.5, justifyContent:'center'}}>
-                        <TouchableOpacity style={{flex:1, alignSelf:'center'}} onPress = {() => navigation.navigate('HomeOrigin')}>
-                            <Text style={{flex:1, fontSize: 30,fontFamily:'daegunM'}}> 마당으로</Text>
+                        <TouchableOpacity style={{flex:0.6, alignSelf:'center',backgroundColor:'white',border:5,borderRadius:5, opacity:0.9, padding:3}} onPress = {() => navigation.navigate('HomeOrigin')}>
+                            <Text style={{flex:1, fontSize: 30,fontFamily:'daegunM'}}>"마당으로"</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -221,5 +267,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     }
 })
+
+
 
 export default HomeScreen
