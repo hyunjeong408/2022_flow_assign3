@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import { BackHandler, Alert } from 'react-native';
-import { Image, ImageBackground, StyleSheet, StatusBar, Platform, View, Text, TouchableOpacity } from 'react-native';
+import { Image, ImageBackground, StyleSheet, StatusBar, View, Text, TouchableOpacity } from 'react-native';
 import * as Google from 'expo-google-app-auth';
 
 import signInLogo from '../assets/btn_google_signin.png';
 
-const StatusBarHeight =  StatusBar.currentHeight;
+
+const StatusBarHeight = StatusBar.currentHeight;
 
 function LoginScreen(props) {
     useEffect(() => {
@@ -35,8 +36,7 @@ function LoginScreen(props) {
                 clientId: "937160071371-rf0tggdsr5j0huuuskqfu45suqii9tdm.apps.googleusercontent.com",
             });
             if(type === "success"){
-                console.log(user);
-                goMainScreen();
+                goMainScreen(user);
             }
             else {
                 console.log("Permission denied.");
@@ -47,8 +47,12 @@ function LoginScreen(props) {
 
     }
 
-    function goMainScreen(){
+
+    function goMainScreen(user){
+        global.USER_EMAIL = user.email;
+        global.USER_NAME = user.name;
         global.iconList=[]
+
         props.navigation.navigate('MAIN');
     }
 
@@ -87,8 +91,6 @@ const styles = StyleSheet.create({
     },
     logoContainer: {
         flex: 0.7,
-        // width: "100%",
-        // height: "70%",
         justifyContent: 'flex-end',
         alignItems: 'center',
         marginTop: StatusBarHeight,
@@ -109,8 +111,6 @@ const styles = StyleSheet.create({
     },
     btnBackView: {
         flex: 0.3,
-        // width: "100%",
-        // height: "30%",
         alignItems: 'center',
     },
     loginButton: {

@@ -1,12 +1,17 @@
 import React from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { StyleSheet, View, Text, StatusBar, ImageBackground, Platform, Image, ScrollView } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, ImageBackground, Image, ScrollView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
+const StatusBarHeight = StatusBar.currentHeight;
 
 function ChatFromScreen({route, navigation}){
     const {status, msg} = route.params;
+    const moveToSendPage = () => {
+        navigation.navigate('CHAT_SEND', {
+            sender: msg.msg_to_nick,
+            getter: msg.msg_from_nick,
+        });
+    }
     return(
         <ImageBackground
         resizeMode='stretch'
@@ -21,16 +26,20 @@ function ChatFromScreen({route, navigation}){
                 <ImageBackground style={styles.letterBack} resizeMode='contain' source={require('../assets/letter.png')}>
                     <View style={styles.letterBox}>
                         <Text style={styles.title}>{msg.msg_to_nick} 에게</Text>
+
                         <ScrollView style={styles.contents}>
                             <Text style={styles.contentsText}>{msg.msg_contents}</Text>
                         </ScrollView>
+
                         <Text style={styles.endTitle}>{msg.msg_from_nick} 씀</Text>
                     </View>
                 </ImageBackground>
             </View>
 
             <View style={styles.iconView}>
-                <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/paperpen.png')}/>
+                <TouchableOpacity style={styles.iconBack} onPress={()=>moveToSendPage()}>
+                    <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/paperpen.png')}/>
+                </TouchableOpacity>
             </View>
         </ImageBackground>
     );
@@ -71,7 +80,8 @@ const styles = StyleSheet.create({
     iconBack: {
         width: '60%',
         height: '80%',
-        alignItems: 'center',
+        alignItems: 'flex-end',
+        marginRight: 10,
         justifyContent:'center',
     },
     title: {

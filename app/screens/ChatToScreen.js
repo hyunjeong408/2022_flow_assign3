@@ -21,16 +21,20 @@ function ChatFromScreen({route, navigation}){
                 <ImageBackground style={styles.letterBack} resizeMode='contain' source={require('../assets/letter.png')}>
                     <View style={styles.letterBox}>
                         <Text style={styles.title}>{msg.msg_to_nick} 에게</Text>
+
                         <ScrollView style={styles.contents}>
                             <Text style={styles.contentsText}>{msg.msg_contents}</Text>
                         </ScrollView>
+
                         <Text style={styles.endTitle}>{msg.msg_from_nick} 씀</Text>
                     </View>
                 </ImageBackground>
             </View>
             
             <View style={styles.iconView}>
-                <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/medal.png')}/>
+                <View style={styles.iconBack}>
+                    <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/medal.png')}/>
+                </View>
             </View>
         </ImageBackground>
     );
@@ -71,7 +75,7 @@ const styles = StyleSheet.create({
     iconBack: {
         width: '60%',
         height: '90%',
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justifyContent:'center',
     },
     title: {
@@ -89,7 +93,6 @@ const styles = StyleSheet.create({
     },
     endTitle: {
         fontSize: 17,
-        // fontWeight: 'bold',
         fontFamily: 'ejr',
     }
 })
