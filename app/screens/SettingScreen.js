@@ -43,10 +43,14 @@ function SettingScreen({navigation}){
                         placeholder='7자 이하의 한글/영문'
                         onChangeText={name => setUserName(name)}
                         ></TextInput>
-
-                        <TouchableOpacity style={styles.doneEditBtn} onPress={() => {editUserName(userName); setModalVisible(!modalVisible);}}>
-                            <Text style={{fontFamily: 'ejr', fontSize: 15}}>EDIT</Text>
+                        <View style={styles.btnGroup}>
+                            <TouchableOpacity style={styles.doneEditBtn} onPress={() => {editUserName(userName); setModalVisible(!modalVisible);}}>
+                                <Text style={{fontFamily: 'ejr', fontSize: 15}}>  OK  </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.doneEditBtn} onPress={() => {setModalVisible(!modalVisible);}}>
+                            <Text style={{fontFamily: 'ejr', fontSize: 15}}>CANCEL</Text>
                         </TouchableOpacity>
+                        </View>
                     </View>
                 </BlurView>
             </Modal>
@@ -122,6 +126,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 7,
         marginBottom: 40,
+    },
+    btnGroup: {
+        width: '80%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     },
     editBtn: {
         width: '60%',

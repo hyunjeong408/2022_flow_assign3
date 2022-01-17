@@ -33,6 +33,7 @@ function LoginScreen(props) {
             const { type, accessToken, user } = await Google.logInAsync({
                 androidClientId: "937160071371-p3jldm60dbc9bci0dijkmg9griqvvvrq.apps.googleusercontent.com",
                 clientId: "937160071371-rf0tggdsr5j0huuuskqfu45suqii9tdm.apps.googleusercontent.com",
+                iosClientId: "937160071371-dcjiom1f3k4ofdv2h5ffq2sssronae24.apps.googleusercontent.com",
             });
             if(type === "success"){
                 goMainScreen(user);
@@ -46,13 +47,27 @@ function LoginScreen(props) {
 
     }
 
-
     function goMainScreen(user){
         global.USER_EMAIL = user.email;
         global.USER_NAME = user.name;
         global.iconList=[]
-
+        getRepotNo();
         props.navigation.navigate('MAIN');
+    }
+
+    function getRepotNo(){
+        fetch(
+          'http://192.249.18.179/api/users',
+          {
+            method: 'POST',
+            headers: {
+            'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: global.USER_EMAIL,
+                nickname: global.USER_NAME
+            })
+          })
     }
 
     return (
