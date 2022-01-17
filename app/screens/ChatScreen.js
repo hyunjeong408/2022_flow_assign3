@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { StyleSheet, View, Text, FlatList, StatusBar, Platform, TouchableOpacity, Dimensions, ImageBackground } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import testData from '../assets/testJSON.json';
 import color from '../config/color';
 
-const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
+const StatusBarHeight = StatusBar.currentHeight;
 
-const userEmail = "aaa@gmail.com";
-const userNickname = "aaa";
+const userEmail = "aaa@gmail.com"; //데이터 들어오면 global.USER_EMAIL 사용
+const userNickname = "aaa";//데이터 들어오면 global.USER_NAME 사용
 
 const userData = testData.user;
 const msgData = testData.message;
