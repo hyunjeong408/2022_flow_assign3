@@ -51,6 +51,10 @@ function App() {
   global.USER_ID = '';
   global.USER_EMAIL = 'defaultEmail';
   global.USER_NAME = 'defaultName';
+  global.OWNER = 'Anonymous'
+  global.BAG_MESSAGE = [];
+
+  
 
   return (
     

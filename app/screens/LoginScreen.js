@@ -54,7 +54,6 @@ function LoginScreen(props) {
         global.iconList=[]
         postUserAccount();
         getUserAccount();
-
         props.navigation.navigate('MAIN');
     }
 
@@ -83,9 +82,36 @@ function LoginScreen(props) {
               },
             }).then(data=>data.json())
             .then(json=>{
-                global.USER_ID = json.id;
-                postUserBag()
-                console.log(json.id);
+                console.log("--------in get user account")
+
+                global.OWNER = json.id
+                console.log("--------")
+
+                console.log(global.OWNER)
+                console.log("--------")
+
+                console.log(json)
+                console.log("--------end get user account")
+
+
+                getUserBag();
+            })
+    }
+
+
+    function getUserBag(){
+        fetch(
+            'http://192.249.18.179/api/bags/owner/'+global.USER_ID,
+            {
+              method: 'GET',
+              headers: {
+              'Content-type': 'application/json'
+              },
+            }).then(data=>data.json())
+            .then(json=>{
+                if(json.length == 0){
+                    postUserBag()
+                }
             })
     }
 

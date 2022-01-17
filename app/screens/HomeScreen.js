@@ -5,26 +5,77 @@ import testData from '../assets/testJSON.json';
 import GiftScreen from'./GiftScreen';
 import GiftDetailScreen from './GiftDetailScreen';
 import GiftMessageScreen from './GiftMessageScreen';
+const image = ({uri: "https://user-images.githubusercontent.com/64190044/149326914-27e77dc8-0160-433b-823d-4eda9d0e6258.png"})
+
+
+// global.OWNER = global.USER_ID
+
+
+/*link with SERVER*/
+
+// function getBagIdByUserID(){
+//     fetch(
+//         'http://192.249.18.179/api/users/id/'+global.OWNER,
+//         {
+//           method: 'GET',
+//           headers: {
+//           'Content-type': 'application/json'
+//           },
+//         }).then(data=>data.json())
+//         .then(json=>{
+//             BAG_ID = json.id;
+//             postUserBag()
+//             console.log(json.id);
+//         })
+// }
+
+function getUserBag(){
+    fetch(
+        'http://192.249.18.179/api/bags/owner/'+global.OWNER,
+        {
+          method: 'GET',
+          headers: {
+          'Content-type': 'application/json'
+          },
+        }).then(data=>data.json())
+        .then(json=>{
+            console.log("--------in get user bag")
+
+                console.log(global.OWNER)
+                console.log("--------")
+
+                console.log(json)
+                console.log("--------")
+
+                setOwnerLetters(json.bag_letter)
+                console.log(ownerLetters)
+
+            console.log("--------end get user bag")
+
+        })
+}
+
+
+
+
+
 
 
 const data = testData.gift;
 var max = parseInt(data.length/8);
 
 
-global.OWNER = global.USER_EMAIL
-
-const image = ({uri: "https://user-images.githubusercontent.com/64190044/149326914-27e77dc8-0160-433b-823d-4eda9d0e6258.png"})
-
-
-
-
 const Stack = createStackNavigator();
+
   
 
 class HomeScreen extends Component {
+
     constructor(props){
         super(props);
     }
+    
+
     render(){
         return(
             <View style = {styles.container}>
@@ -43,11 +94,13 @@ class HomeScreen extends Component {
 
 const HomeScreenOrigin = ({navigation}) => {
 
+    getUserBag()
+    const [ownerLetters,setOwnerLetters] = useState();
+
     function isOwner () {
-        console.log(global.OWNER)
-        console.log(global.USER_EMAIL)
-        console.log("------------------")
-        if (global.OWNER == global.USER_EMAIL){
+
+
+        if (global.OWNER == global.USER_ID){
             return(
                 <TouchableOpacity style= {{flex: 1}}>
                     <View style={{flexDirection: 'row', justifyContent: 'center'}}>
@@ -125,7 +178,7 @@ const HomeScreenZoom = ({navigation}) => {
     }
 
     function returnImage(i) {
-        if (global.OWNER == global.USER_EMAIL){
+        if (global.OWNER == global.USER_ID){
             if (index+i < data.length-1){
                 if (i ===0 || i===2 ||i === 4 || i === 6){
                    console.log("in0248")
