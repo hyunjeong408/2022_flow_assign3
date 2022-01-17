@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { StyleSheet, View, Text, StatusBar, ImageBackground, Platform, Modal, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { BlurView } from 'expo-blur';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import color from '../config/color';
 
-const StatusBarHeight = Platform.OS === 'ios' ? getStatusBarHeight(true) : StatusBar.currentHeight;
+const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
 function SettingScreen({navigation}){
     const [modalVisible, setModalVisible] = useState(false);
@@ -85,7 +84,7 @@ const styles = StyleSheet.create({
     backIconView: {
         marginTop: StatusBarHeight+10,
         height: '5%',
-        paddingLeft: 10,
+        paddingLeft: 20,
     },
     settingView: {
         width: '100%',

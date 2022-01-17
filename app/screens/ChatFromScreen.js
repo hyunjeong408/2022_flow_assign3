@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, StatusBar, ImageBackground, Image, ScrollView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-const StatusBarHeight = StatusBar.currentHeight;
+const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
 function ChatFromScreen({route, navigation}){
     const {status, msg} = route.params;

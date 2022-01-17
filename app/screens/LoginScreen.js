@@ -5,8 +5,7 @@ import * as Google from 'expo-google-app-auth';
 
 import signInLogo from '../assets/btn_google_signin.png';
 
-
-const StatusBarHeight = StatusBar.currentHeight;
+const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
 function LoginScreen(props) {
     useEffect(() => {
@@ -29,7 +28,7 @@ function LoginScreen(props) {
     
         return () => backHandler.remove();
       }, []);
-    async function sinInWithGoogleAsync() {
+    async function signInWithGoogleAsync() {
         try {
             const { type, accessToken, user } = await Google.logInAsync({
                 androidClientId: "937160071371-p3jldm60dbc9bci0dijkmg9griqvvvrq.apps.googleusercontent.com",
@@ -71,7 +70,7 @@ function LoginScreen(props) {
             </View>
             <View style={styles.btnBackView}>
                 <TouchableOpacity
-                    onPress={()=> goMainScreen()}
+                    onPress={()=> signInWithGoogleAsync()} //ios 실행 시 props.navigation.navigate('MAIN') 로 바꿔서 실행할 것
                     style={styles.loginButton}
                 >
                     <Image
