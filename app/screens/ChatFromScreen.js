@@ -1,13 +1,10 @@
 import React from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, View, Text, StatusBar, ImageBackground, Platform, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, StatusBar, ImageBackground, Image, ScrollView, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const StatusBarHeight = StatusBar.currentHeight;
 
 function ChatFromScreen({route, navigation}){
-    const navigations = useNavigation();
     const {status, msg} = route.params;
     const moveToSendPage = () => {
         navigation.navigate('CHAT_SEND', {
@@ -29,9 +26,11 @@ function ChatFromScreen({route, navigation}){
                 <ImageBackground style={styles.letterBack} resizeMode='contain' source={require('../assets/letter.png')}>
                     <View style={styles.letterBox}>
                         <Text style={styles.title}>{msg.msg_to_nick} 에게</Text>
+
                         <ScrollView style={styles.contents}>
                             <Text style={styles.contentsText}>{msg.msg_contents}</Text>
                         </ScrollView>
+
                         <Text style={styles.endTitle}>{msg.msg_from_nick} 씀</Text>
                     </View>
                 </ImageBackground>
@@ -41,7 +40,6 @@ function ChatFromScreen({route, navigation}){
                 <TouchableOpacity style={styles.iconBack} onPress={()=>moveToSendPage()}>
                     <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/paperpen.png')}/>
                 </TouchableOpacity>
-                {/* <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/paperpen.png')}/> */}
             </View>
         </ImageBackground>
     );

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 
-// import './app/GlobalVar';
 import LoginStackNavigator from './app/navigators/LoginStackNavigator';
 
 function App() {
