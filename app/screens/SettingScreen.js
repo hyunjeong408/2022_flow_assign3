@@ -16,15 +16,41 @@ function SettingScreen({navigation}){
     const goLoginScreen = () => {
         global.USER_EMAIL = 'defaultEmail';
         global.USER_NAME = 'defaultName';
+        global.fromMsg = [];
+        global.toMsg = [];
         navigation.navigate('LOGIN');
     }
 
     const editUserName = (userName) => {
         global.USER_NAME = userName;
+        fetch(
+            'http://192.249.18.179/api/users/'+global.USER_ID,
+            {
+              method: 'PUT',
+              headers: {
+              'Content-type': 'application/json'
+              },
+              body: JSON.stringify({
+                  email: global.USER_EMAIL,
+                  nickname: global.USER_NAME,
+              })
+            })
     }
 
     const searchUserName = (userName) => {
-        console.log(userName);
+        fetch(
+            'http://192.249.18.179/api/users/email/'+userName,
+            {
+              method: 'GET',
+              headers: {
+              'Content-type': 'application/json'
+              },
+            }).then(data=>data.json())
+            .then(json=>{
+                global.OWNER = json.id;
+                navigation.navigate('Home');
+            })
+        navigation.navigate('Home');
     }
 
     return(
