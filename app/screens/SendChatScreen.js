@@ -6,8 +6,27 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
 function SendChatScreen({route, navigation}){
-    const {sender, getter} = route.params;
+    const {sender_id, sender_nick, getter_id, getter_nick} = route.params;
     const [txt, setEnteredTxt] = useState('');
+
+    
+    function postNewMessage(txt){
+        fetch(
+            'http://192.249.18.179/api/msg',
+            {
+            method: 'POST',
+            headers: {
+            'Content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                fromId: sender_id,
+                toId: getter_id,
+                fromNickname: sender_nick,
+                toNickname: getter_nick,
+                msgContents: txt,
+            })
+            })
+    }
     return(
         <ImageBackground
         resizeMode='stretch'
@@ -22,7 +41,7 @@ function SendChatScreen({route, navigation}){
                 <View style={styles.letterView}>
                     <ImageBackground style={styles.letterBack} resizeMode='contain' source={require('../assets/letter.png')}>
                         <View style={styles.letterBox}>
-                            <Text style={styles.titleText}>{getter}에게</Text>
+                            <Text style={styles.titleText}>{getter_nick} 에게</Text>
                             
                             <TextInput
                             style={styles.contents}
@@ -31,13 +50,13 @@ function SendChatScreen({route, navigation}){
                             onChangeText={text => setEnteredTxt(text)}
                             ></TextInput>
 
-                            <Text style={styles.endTitle}>{sender} 씀</Text>
+                            <Text style={styles.endTitle}>{sender_nick} 씀</Text>
                         </View>
                     </ImageBackground>
                 </View>
 
                 <View style={styles.iconView}>
-                    <TouchableOpacity style={styles.iconBack} onPress={()=>{console.log(txt); navigation.goBack(); navigation.goBack();}}>
+                    <TouchableOpacity style={styles.iconBack} onPress={()=>{postNewMessage(txt); navigation.goBack(); navigation.goBack();}}>
                         <Image style={styles.iconBack} resizeMode='contain' source={require('../assets/send.png')}/>
                     </TouchableOpacity>
                 </View>

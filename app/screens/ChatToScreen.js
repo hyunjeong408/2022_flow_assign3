@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const StatusBarHeight = Platform.OS === 'ios' ? 30 : StatusBar.currentHeight;
 
-function ChatFromScreen({route, navigation}){
+function ChatToScreen({route, navigation}){
     const {status, msg} = route.params;
     return(
         <ImageBackground
@@ -19,13 +19,13 @@ function ChatFromScreen({route, navigation}){
             <View style={styles.letterView}>
                 <ImageBackground style={styles.letterBack} resizeMode='contain' source={require('../assets/letter.png')}>
                     <View style={styles.letterBox}>
-                        <Text style={styles.title}>{msg.msg_to_nick} 에게</Text>
+                        <Text style={styles.title}>{msg.toNickname} 에게</Text>
 
                         <ScrollView style={styles.contents}>
-                            <Text style={styles.contentsText}>{msg.msg_contents}</Text>
+                            <Text style={styles.contentsText}>{msg.msgContents}</Text>
                         </ScrollView>
 
-                        <Text style={styles.endTitle}>{msg.msg_from_nick} 씀</Text>
+                        <Text style={styles.endTitle}>{msg.fromNickname} 씀</Text>
                     </View>
                 </ImageBackground>
             </View>
@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     },
     contentsText: {
         fontSize: 17,
-        fontFamily: 'gowun',
+        fontFamily: 'gowunBold',
     },
     endTitle: {
         fontSize: 17,
@@ -96,4 +96,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ChatFromScreen;
+export default ChatToScreen;
