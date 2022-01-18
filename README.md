@@ -18,11 +18,23 @@
 
 <img src="https://user-images.githubusercontent.com/65072995/149900747-9c608ce2-875f-4f20-8c7d-bdebaddd8767.png"  width="600" height="450"/>
 
+* Splash Screen
+* Login Screen
+  * GoogleSignIn : Google 소셜 로그인 기능
+
 ## D. Tab
 ### Tab 1. Home
+- 유저의 복주머니
+- 유저의 복주머니 편지 조회
+- 본인 복주머니인 경우: 복주머니 편지 답장 (쪽지)
+- 타인 복주머니인 경우: 복주머니 편지 작성
 ### Tab 2. Message
+- 받은쪽지: 다른 유저가 나에게 보낸 쪽지 + 답장
+- 보낸쪽지: 내가 다른 유저에게 보낸 쪽지
 ### Tab 3. Setting
-
+- 다른 유저 검색
+- 본인 닉네임 변경
+- 로그아웃
 ## E. Reference
 <details>
 <summary>Packages</summary>
