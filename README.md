@@ -10,7 +10,7 @@
 - OS: Android, IOS
 - Language: JavaScript
 - Front-end : React Native Expo
-- Back-end : Node.js Express Mongoose
+- Back-end : Node.js Express
 - Database : MongoDB
 - IDE: VS Code
 
