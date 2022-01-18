@@ -32,6 +32,7 @@ function LoginScreen(props) {
         try {
             const { type, accessToken, user } = await Google.logInAsync({
                 androidClientId: "937160071371-p3jldm60dbc9bci0dijkmg9griqvvvrq.apps.googleusercontent.com",
+                iosClientId:"937160071371-dcjiom1f3k4ofdv2h5ffq2sssronae24.apps.googleusercontent.com",
                 clientId: "937160071371-rf0tggdsr5j0huuuskqfu45suqii9tdm.apps.googleusercontent.com",
                 iosClientId: "937160071371-dcjiom1f3k4ofdv2h5ffq2sssronae24.apps.googleusercontent.com",
             });
@@ -83,8 +84,37 @@ function LoginScreen(props) {
             .then(json=>{
                 global.USER_ID = json.id;
                 global.USER_NAME = json.nickname;
-                postUserBag();
+
+                console.log("--------in get user account")
+
+                global.OWNER = json.id
+                console.log("--------")
+
+                console.log(global.OWNER)
+                console.log("--------")
+
+                console.log(json)
+                console.log("--------end get user account")
+
+                getUserBag();
                 fetchData();
+            })
+    }
+
+
+    function getUserBag(){
+        fetch(
+            'http://192.249.18.179/api/bags/owner/'+global.USER_ID,
+            {
+              method: 'GET',
+              headers: {
+              'Content-type': 'application/json'
+              },
+            }).then(data=>data.json())
+            .then(json=>{
+                if(json.length == 0){
+                    postUserBag()
+                }
             })
     }
 

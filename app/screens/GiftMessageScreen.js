@@ -1,6 +1,8 @@
 import React, { Component, useState } from 'react';
 import { StyleSheet, View, Text, ImageBackground,Image,TouchableOpacity, Modal, Button,ScrollView, SafeAreaView} from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 const image = ({uri: "https://user-images.githubusercontent.com/64190044/149326914-27e77dc8-0160-433b-823d-4eda9d0e6258.png"})
 
@@ -11,6 +13,7 @@ const UselessTextInput = (props) => {
         editable
         maxLength={500}
         multiline={true}
+        style={{fontFamily:'gowun'}}
       />
     );
   }
@@ -29,11 +32,15 @@ const GiftMessageScreen = ({navigation,route}) => {
     const [messageContents, setMessageContents] = useState()
 
     return(
+        
         <ImageBackground source={image} resizeMode='stretch' style={styles.image}>
                 <View style={{flex:1,justifyContent: 'center'}}>
-                    <ImageBackground source = {require('../assets/main_icon_letter.png')} style={{flex:0.9, justifyContent: 'center', resizeMode:'contain', marginTop:50}}>
-                        <View style={{flex:0.55}}>
-                                <TextInput style={{flex:0.15,width:200, alignSelf: 'center', fontSize: 27, marginTop:10, marginTop: 10, fontFamily:'daegunM'}} maxLength={7} onChangeText={setMessageNick} value={messageNick} placeholder='닉네임을 입력'></TextInput>
+                    <TouchableOpacity style={{flex:0.17, justifyContent:'flex-end', marginLeft:30}} onPress={()=>{navigation.goBack()}}>
+                        <Text style={{fontSize:30,fontFamily:'daegunM'}}>이전으로</Text>
+                    </TouchableOpacity>
+                    <ImageBackground source = {require('../assets/main_icon_letter.png')} style={{flex:0.9, justifyContent: 'center', resizeMode:'contain'}}>
+                        <View style={{flex: 0.6, width:250, alignItems: 'center', alignSelf: 'center', justifyContent: 'space-evenly',marginTop:40,marginLeft:-10}}>
+                            <TextInput style={{flex:0.15,width:200, alignSelf: 'center', fontSize: 27, marginTop:10, marginTop: 10, fontFamily:'daegunM'}} maxLength={7} onChangeText={setMessageNick} value={messageNick} placeholder='닉네임을 입력'></TextInput>
                                 <View style={{flex:1,height:200,width:200, alignSelf: 'center', marginTop:10,fontFamily:'gowun'}}>
                                     <UselessTextInput onChangeText={setMessageContents} value={messageContents} placeholder='내용을 입력해주세여'>
                                     </UselessTextInput>
