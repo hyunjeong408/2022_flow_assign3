@@ -29,41 +29,42 @@ const image = ({uri: "https://user-images.githubusercontent.com/64190044/1493269
 //         })
 // }
 
-function getUserBag(){
-    fetch(
-        'http://192.249.18.179/api/bags/owner/'+global.OWNER,
-        {
-          method: 'GET',
-          headers: {
-          'Content-type': 'application/json'
-          },
-        }).then(data=>data.json())
-        .then(json=>{
-            console.log("--------in get user bag")
+// function getUserBag(){
+//     fetch(
+//         'http://192.249.18.179/api/bags/owner/'+global.OWNER,
+//         {
+//           method: 'GET',
+//           headers: {
+//           'Content-type': 'application/json'
+//           },
+//         }).then(data=>data.json())
+//         .then(json=>{
+//             console.log("--------in get user bag")
 
-                console.log(global.OWNER)
-                console.log("--------")
+//                 console.log(global.OWNER)
+//                 console.log("--------")
 
-                console.log(json)
-                console.log("--------")
+//                 console.log(json)
+//                 console.log("--------")
 
-                setOwnerLetters(json.bag_letter)
-                console.log(ownerLetters)
+//                 setOwnerLetters(json.bag_letter)
+//                 console.log(ownerLetters)
 
-            console.log("--------end get user bag")
+//             console.log("--------end get user bag")
 
-        })
-}
-
-
+//         })
+// }
 
 
 
 
 
-const data = testData.gift;
-var max = parseInt(data.length/8);
+console.log('#######BAG_MESSAGE: '+global.BAG_MESSAGE)
 
+
+
+// var max = parseInt((global.BAG_MESSAGE).length/8);
+var max = 1;
 
 const Stack = createStackNavigator();
 
@@ -73,8 +74,10 @@ class HomeScreen extends Component {
 
     constructor(props){
         super(props);
+        // this.state={data:global.BAG_MESSAGE}
+        // max = parseInt(this.state.global.BAG_MESSAGE/8);
     }
-    
+
 
     render(){
         return(
@@ -93,9 +96,14 @@ class HomeScreen extends Component {
 }
 
 const HomeScreenOrigin = ({navigation}) => {
+    // const [ownerLetters,setOwnerLetters] = useState();
 
-    getUserBag()
-    const [ownerLetters,setOwnerLetters] = useState();
+    iconList = [require('../assets/samsung_mouse.png'),require('../assets/magic_mouse.png'),require('../assets/magic_mouse_black.png'),require('../assets/logi_mouse_blue.png'),
+require('../assets/logi_mouse_black.png'),require('../assets/logi_mouse.png'),require('../assets/ipad_silver.png'),require('../assets/ipad_black.png'),
+require('../assets/tab_blue.png'),require('../assets/tab_bronze.png'),require('../assets/pencil_1.png'),require('../assets/pencil_2.png'),
+require('../assets/airpod_max.png'),require('../assets/airpod_pro.png'),require('../assets/airpod_2.png'),require('../assets/airpod_3.png'),
+require('../assets/buds_pro.png'),require('../assets/buds_bean.png'),require('../assets/hp.png'),require('../assets/imac.png'),
+require('../assets/mac_mini.png'),require('../assets/iphone.png'),require('../assets/galaxy.png'),require('../assets/watch.png')];
 
     function isOwner () {
 
@@ -179,21 +187,26 @@ const HomeScreenZoom = ({navigation}) => {
 
     function returnImage(i) {
         if (global.OWNER == global.USER_ID){
-            if (index+i < data.length-1){
+            console.log("**************######" + (index+i))
+            console.log("**************######" + (global.BAG_MESSAGE.length))
+            if (index+i < global.BAG_MESSAGE.length){
                 if (i ===0 || i===2 ||i === 4 || i === 6){
                    console.log("in0248")
+                   console.log("iconList: "+ iconList)
+                //    console.log("in0248")
+
    
                    return(
-                       <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-end'}} onPress={() => {setFromNickName(data[index+i].msg_from_nick); setContents(data[index+i].msg_contents);setModalVisible(true)}}>
-                           <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                       <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-end'}} onPress={() => {setFromNickName(global.BAG_MESSAGE[index+i].santa_nickname); setContents(global.BAG_MESSAGE[index+i].bag_contents);setModalVisible(true)}}>
+                           <Image source = {iconList[global.BAG_MESSAGE[index+i].bag_icon]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
                        </TouchableOpacity>
                    )
                }
                else{
                    console.log("in not 0248")
                    return(
-                       <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-start', justifyContent: 'flex-end'}} onPress={() => {setFromNickName(data[index+i].msg_from_nick); setContents(data[index+i].msg_contents);setModalVisible(true)}}>
-                           <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                       <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-start', justifyContent: 'flex-end'}} onPress={() => {setFromNickName(global.BAG_MESSAGE[index+i].bag_contents); setContents(global.BAG_MESSAGE[index+i].bag_contents);setModalVisible(true)}}>
+                           <Image source = {iconList[global.BAG_MESSAGE[index+i].bag_icon]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
                        </TouchableOpacity>
                    )
                }
@@ -204,13 +217,12 @@ const HomeScreenZoom = ({navigation}) => {
                )
            }
         }else {
-            if (index+i < data.length-1){
+            if (index+i < global.BAG_MESSAGE.length-1){
                 if (i ===0 || i===2 ||i === 4 || i === 6){
-                   console.log("in0248")
-   
+                   console.log("in0248")   
                    return(
                        <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-end'}}>
-                           <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                           <Image source = {iconList[global.BAG_MESSAGE[index+i].bag_icon]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
                        </TouchableOpacity>
                    )
                }
@@ -218,7 +230,7 @@ const HomeScreenZoom = ({navigation}) => {
                    console.log("in not 0248")
                    return(
                        <TouchableOpacity style={{flex:0.2, width: 80, alignSelf:'flex-start', justifyContent: 'flex-end'}}>
-                           <Image source = {global.iconList[data[index+i].icon_id]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
+                           <Image source = {iconList[global.BAG_MESSAGE[index+i].bag_icon]}  style = {{flex: 1, width:80}} resizeMode= {'contain'}/>
                        </TouchableOpacity>
                    )
                }
