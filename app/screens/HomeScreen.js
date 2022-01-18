@@ -135,7 +135,7 @@ require('../assets/mac_mini.png'),require('../assets/iphone.png'),require('../as
         <ImageBackground source={image} resizeMode='stretch' style={styles.image}>
 
         <View style={{ marginTop:-100,marginBottom:100,marginLeft:15}}>
-            <Text style= {{fontSize:20,fontFamily:'gowunBold'}}>"{global.USER_NAME}"님의 복주머니</Text>
+            <Text style= {{fontSize:20,fontFamily:'gowunBold'}}>"{global.OWNER_NAME}"님의 복주머니</Text>
         </View>
         <TouchableOpacity style= {{ flex: 0.5, alignSelf: 'center'}}
         onPress = {() => navigation.navigate('HomeZoom') }>
