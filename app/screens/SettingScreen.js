@@ -16,6 +16,8 @@ function SettingScreen({navigation}){
     const goLoginScreen = () => {
         global.USER_EMAIL = 'defaultEmail';
         global.USER_NAME = 'defaultName';
+        global.fromMsg = [];
+        global.toMsg = [];
         navigation.navigate('LOGIN');
     }
 
