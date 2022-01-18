@@ -16,6 +16,8 @@
 
 ## C. 기본 구조
 
+<img src="https://user-images.githubusercontent.com/65072995/149900747-9c608ce2-875f-4f20-8c7d-bdebaddd8767.png"  width="600" height="450"/>
+
 ## D. Tab
 ### Tab 1. Home
 ### Tab 2. Message
