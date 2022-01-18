@@ -1,5 +1,6 @@
 # 정호랑(정이 많은 호랑이)
 ## 부담없이 소통할 수 있는 익명 메신저 앱
+[Back-end](https://github.com/jeonghorang/2022_flow_assign3_backend)
 
 ## A. 개발 팀원  
 - 한양대 컴퓨터소프트웨어학부 [이수정](https://github.com/SooJ2)
