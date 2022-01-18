@@ -17,6 +17,9 @@
 ## C. 기본 구조
 
 ## D. Tab
+### Tab 1. Home
+### Tab 2. Message
+### Tab 3. Setting
 
 ## E. Reference
 
