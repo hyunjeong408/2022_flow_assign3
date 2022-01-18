@@ -88,6 +88,7 @@ function LoginScreen(props) {
                 console.log("--------in get user account")
                 global.USER_ID = json.id
                 global.OWNER = global.USER_ID
+                global.OWNER_NAME = json.nickname
                 console.log(global.USER_ID)
                 console.log(global.OWNER)
                 console.log("--------")

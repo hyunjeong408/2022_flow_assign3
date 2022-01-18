@@ -28,6 +28,7 @@ function App() {
   global.toMsg = [];
 
   global.OWNER = 'Anonymous'
+  global.OWNER_NAME =''
   global.BAG_ID = ''
   global.BAG_MESSAGE = [];
 

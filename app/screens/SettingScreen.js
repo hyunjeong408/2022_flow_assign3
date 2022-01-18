@@ -48,9 +48,10 @@ function SettingScreen({navigation}){
             }).then(data=>data.json())
             .then(json=>{
                 global.OWNER = json.id;
+                global.OWNER_NAME = json.nickname
                 navigation.navigate('Home');
             })
-        navigation.navigate('Home');
+        // navigation.navigate('Home');
     }
 
     return(
@@ -99,7 +100,7 @@ function SettingScreen({navigation}){
                         <View style={styles.searchView}>
                             <TextInput
                             style={styles.inputStyle}
-                            maxLength={7}
+                            // maxLength={7}
                             placeholder='SEARCH'
                             onChangeText={name => setFindName(name)}
                             ></TextInput>
