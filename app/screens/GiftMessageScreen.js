@@ -31,6 +31,49 @@ const GiftMessageScreen = ({navigation,route}) => {
     const [messageNick, setMessageNick] = useState()
     const [messageContents, setMessageContents] = useState()
 
+    function getUserBag(){
+        fetch(
+            'http://192.249.18.179/api/bags/owner/'+global.USER_ID,
+            {
+              method: 'GET',
+              headers: {
+              'Content-type': 'application/json'
+              },
+            }).then(data=>data.json())
+            .then(json=>{
+                global.BAG_ID = json[0].id
+                postUserBag()
+            })
+    }
+
+    function postUserBag(){
+        fetch(
+            'http://192.249.18.179/api/bags/'+global.BAG_ID,
+            {
+              method: 'POST',
+              headers: {
+              'Content-type': 'application/json'
+              },
+              body: JSON.stringify( {
+                "bag_letter" : JSON.stringify(({
+                            "santaid": global.USER_ID,
+                            "santa_nickname": messageNick,
+                            "bag_contents": messageContents,
+                            "bag_icon": index}))
+                })
+            }
+            )
+
+            // console.console.log("*****************");
+            // console.console.log(global.USER_ID)
+            // console.console.log(messageNick)
+            // console.console.log(index)
+            // console.console.log("*****************");
+
+    }
+
+
+
     return(
         
         <ImageBackground source={image} resizeMode='stretch' style={styles.image}>
@@ -46,7 +89,7 @@ const GiftMessageScreen = ({navigation,route}) => {
                                     </UselessTextInput>
                                 </View>
 
-                                <TouchableOpacity style={{flex:0.2 ,width: 200 , alignSelf:'center', justifyContent: 'center',marginTop:20}} onPress={() => {}}>
+                                <TouchableOpacity style={{flex:0.2 ,width: 200 , alignSelf:'center', justifyContent: 'center',marginTop:20}} onPress={() => {getUserBag()}}>
                                     <Text style={{alignSelf:'center',fontSize: 25, fontFamily:'daegunM'}}>전송</Text>
                                 </TouchableOpacity>
                             </View>

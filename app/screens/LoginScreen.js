@@ -86,13 +86,11 @@ function LoginScreen(props) {
                 global.USER_NAME = json.nickname;
 
                 console.log("--------in get user account")
-
-                global.OWNER = json.id
-                console.log("--------")
-
+                global.USER_ID = json.id
+                global.OWNER = global.USER_ID
+                console.log(global.USER_ID)
                 console.log(global.OWNER)
                 console.log("--------")
-
                 console.log(json)
                 console.log("--------end get user account")
 
@@ -104,6 +102,7 @@ function LoginScreen(props) {
 
 
     function getUserBag(){
+        console.log("%%%%%%%%%%%%%%%%%%%%%")        
         fetch(
             'http://192.249.18.179/api/bags/owner/'+global.USER_ID,
             {
@@ -113,10 +112,56 @@ function LoginScreen(props) {
               },
             }).then(data=>data.json())
             .then(json=>{
+                console.log("--------in get user bag")
+                console.log("user id:"+global.USER_ID)
+                // console.log(json)
+                // console.log("--------")
+                // console.log(json[0].bag_letter)
+                // console.log(json[0].bag_owner)
+                // console.log(json[0].id)
+                // console.log("--------")
+                // console.log(tmpMessage)
+                // console.log("--------")
+                console.log(json.length)
                 if(json.length == 0){
+                    console.log("in if stmt")
                     postUserBag()
+                }else{
+                    console.log("in else stmt")
+                    const tmpMessage = json[0].bag_letter
+                    getLetter(tmpMessage)
                 }
+                console.log("--------end get user bag")
+
             })
+    }
+
+
+    function getLetter(tempMessage){
+        console.log("********* " + tempMessage.length)
+        console.log("temp Message: " + tempMessage)
+        for (i=0; i < tempMessage.length; i++)
+        {
+            console.log("in for stmt")
+            fetch(
+                'http://192.249.18.179/api/letters/id/'+tempMessage[i],
+                {
+                  method: 'GET',
+                  headers: {
+                  'Content-type': 'application/json'
+                  },
+                }).then(data=>data.json())
+                .then(json=>{
+                    console.log("-------in getLetter-------")
+                    console.log(json)
+                    console.log('json stringify: '+JSON.stringify(json))
+                    console.log("--------------------------")
+                    global.BAG_MESSAGE.push(json)
+                    console.log(global.BAG_MESSAGE)
+                    console.log("-------end getLetter-------")
+                }
+                )
+        }
     }
 
     function postUserBag(){
