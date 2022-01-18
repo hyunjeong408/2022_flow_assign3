@@ -28,9 +28,15 @@
 - 유저의 복주머니 편지 조회
 - 본인 복주머니인 경우: 복주머니 편지 답장 (쪽지)
 - 타인 복주머니인 경우: 복주머니 편지 작성
+<img src="https://user-images.githubusercontent.com/64190044/149932814-58e11784-1008-4ce8-8e41-d7dbdecf687f.jpeg"/>
+
+
 ### Tab 2. Message
 - 받은쪽지: 다른 유저가 나에게 보낸 쪽지 + 답장
 - 보낸쪽지: 내가 다른 유저에게 보낸 쪽지
+<img src="https://user-images.githubusercontent.com/64190044/149932867-20d7357c-7195-45c4-b154-e18fe8f4b8b6.jpeg"/>
+     
+     
 ### Tab 3. Setting
 - 다른 유저 검색
 - 본인 닉네임 변경
