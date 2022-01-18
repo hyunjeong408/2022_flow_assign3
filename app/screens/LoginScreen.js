@@ -54,7 +54,7 @@ function LoginScreen(props) {
         global.iconList=[]
         postUserAccount();
         getUserAccount();
-        props.navigation.navigate('MAIN');
+        // props.navigation.navigate('MAIN');
     }
 
     function postUserAccount(){
@@ -98,6 +98,7 @@ function LoginScreen(props) {
 
                 getUserBag();
                 fetchData();
+                props.navigation.navigate('MAIN');
             })
     }
 
@@ -190,7 +191,7 @@ function LoginScreen(props) {
             </View>
             <View style={styles.btnBackView}>
                 <TouchableOpacity
-                    onPress={()=> signInWithGoogleAsync()} //ios 실행 시 props.navigation.navigate('MAIN') 로 바꿔서 실행할 것
+                    onPress={()=> signInWithGoogleAsync()}
                     style={styles.loginButton}
                 >
                     <Image
