@@ -18,6 +18,7 @@ function SettingScreen({navigation}){
         global.USER_NAME = 'defaultName';
         global.fromMsg = [];
         global.toMsg = [];
+        global.BAG_MESSAGE = [];//
         navigation.navigate('LOGIN');
     }
 
@@ -49,9 +50,51 @@ function SettingScreen({navigation}){
             .then(json=>{
                 global.OWNER = json.id;
                 global.OWNER_NAME = json.nickname
-                navigation.navigate('Home');
+                // navigation.navigate('Home');
+                fetch(
+                    'http://192.249.18.179/api/bags/owner/'+json.id,
+                    {
+                      method: 'GET',
+                      headers: {
+                      'Content-type': 'application/json'
+                      },
+                    }).then(data=>data.json())
+                    .then(json=>{
+                        console.log("--------in get user bag")
+                        console.log("user id::"+global.OWNER_NAME)
+                        console.log(json.length)
+                        const tmpMessage = json[0].bag_letter
+                        getLetter(tmpMessage)
+        
+                    })
             })
-        // navigation.navigate('Home');
+    }
+
+    function getLetter(tempMessage){
+        global.BAG_MESSAGE = [];
+        for (i=0; i < tempMessage.length; i++)
+        {
+            console.log("in for stmt")
+            fetch(
+                'http://192.249.18.179/api/letters/id/'+tempMessage[i],
+                {
+                  method: 'GET',
+                  headers: {
+                  'Content-type': 'application/json'
+                  },
+                }).then(data=>data.json())
+                .then(json=>{
+                    console.log("-------in getLetter-------")
+                    console.log(json)
+                    console.log('json stringify: '+JSON.stringify(json))
+                    console.log("--------------------------")
+                    global.BAG_MESSAGE.push(json)
+                    console.log(global.BAG_MESSAGE)
+                    console.log("-------end getLetter-------")
+                }
+                )
+        }
+        navigation.navigate('Home');
     }
 
     return(

@@ -19,21 +19,13 @@ const UselessTextInput = (props) => {
   }
 const GiftMessageScreen = ({navigation,route}) => {
     const {index} = route.params;
-    // const [titleValid,setTitlteValid] = useState(false);
-    // const titleChangeHandler = (text) => {
-    //     if(text.trim().length === 0){
-    //         setTitlteValid(false);
-    //     } else{
-    //         setTitlteValid(true);
-    //     }
-    //     setTitlteValid(text)
-    // }
+
     const [messageNick, setMessageNick] = useState()
     const [messageContents, setMessageContents] = useState()
 
     function getUserBag(){
         fetch(
-            'http://192.249.18.179/api/bags/owner/'+global.USER_ID,
+            'http://192.249.18.179/api/bags/owner/'+global.OWNER,
             {
               method: 'GET',
               headers: {
@@ -41,12 +33,14 @@ const GiftMessageScreen = ({navigation,route}) => {
               },
             }).then(data=>data.json())
             .then(json=>{
+                console.log(json)
                 global.BAG_ID = json[0].id
                 postUserBag()
             })
-    }
+    }//
 
     function postUserBag(){
+        console.log("in!!!!!")
         fetch(
             'http://192.249.18.179/api/bags/'+global.BAG_ID,
             {
@@ -55,20 +49,14 @@ const GiftMessageScreen = ({navigation,route}) => {
               'Content-type': 'application/json'
               },
               body: JSON.stringify( {
-                "bag_letter" : JSON.stringify(({
+                "bag_letter" : {
                             "santaid": global.USER_ID,
                             "santa_nickname": messageNick,
                             "bag_contents": messageContents,
-                            "bag_icon": index}))
+                            "bag_icon": index}
                 })
             }
             )
-
-            // console.console.log("*****************");
-            // console.console.log(global.USER_ID)
-            // console.console.log(messageNick)
-            // console.console.log(index)
-            // console.console.log("*****************");
 
     }
 
